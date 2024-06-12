@@ -5,4 +5,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+
+    text-align: center;
+
 }
