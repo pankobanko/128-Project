@@ -15,7 +15,7 @@
 .entire {
     height: 100vh;
     display: flex;
-    background: url(login_bg-01-01-01.jpg);
+    background: url(assets/login_bg-01-01-01.jpg);
     background-position: center;
     background-size: cover;
     flex-direction: column;
