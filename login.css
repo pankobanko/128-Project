@@ -15,7 +15,7 @@
 .entire {
     height: 100vh;
     display: flex;
-    background: url('assets/login_bg-01-01-01.jpg)');
+    background: url(login_bg-01-01-01.jpg);
     background-position: center;
     background-size: cover;
     flex-direction: column;
@@ -103,4 +103,12 @@ input {
 input:hover {
     border-bottom: 2px solid rgba(39, 129, 97, 1);
     transition: border-bottom 0.2s;
+}
+
+input:focus {
+    outline:none;
+    background: rgba(39, 129, 97, 0.1);
+    transition: background 0.2s;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
