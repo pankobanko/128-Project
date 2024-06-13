@@ -10,19 +10,17 @@
     font-optical-sizing: auto;
     font-weight: 900;
     font-style: normal;
-  }
+}
 
 .entire {
     height: 100vh;
     display: flex;
     background: url(assets/home.jpg);
-    background-position: fixed;
-    background-size: 100%;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     flex-direction: column;
-    overflow: hidden;
-    align-self: center;
-    position: relative;
-    z-index: 1;
+
 }
 
 .navbar {
@@ -66,6 +64,58 @@
 
 .box {
     display: flex;
-    width: 80%; 
+    width: 80%;
 }
 
+.left {
+    flex: 1;
+}
+
+.right {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 400px;
+    margin-right: 60px;
+}
+
+.right .text h2 {
+    text-align: center;
+    margin-bottom: 100px;
+    font-size: 2em;
+    font-weight: 800;
+    color:#278161;
+}
+
+.right form {
+    display: flex;
+    flex-direction: column;
+}
+
+.right form .input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+    padding: 10px;
+    padding-bottom: 6px;
+}
+
+input:hover {
+    border-bottom: 2px solid rgba(39, 129, 97, 1);
+    transition: border-bottom 0.2s;
+}
+
+input:focus {
+    outline: none;
+    background: rgba(39, 129, 97, 0.1);
+    transition: background 0.2s;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom: 2px solid rgba(39, 129, 97, 1);
+}
