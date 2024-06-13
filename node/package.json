@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "express-session": "^1.18.0",
     "formidable": "^3.5.1",
     "mysql": "^2.18.1",
     "upper-case": "^3.0.0"
