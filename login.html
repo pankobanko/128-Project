@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
-    <title>lmao</title>
+    <title>abdur is beautiful</title>
 </head>
 <body>
     <div class="entire">    
@@ -21,7 +21,7 @@
             </nav>
         </div>
         <div class="page">
-            <div class="box">
+            <div class="box" id="form-box">
                 <div class="left">
 
                 </div>
@@ -44,7 +44,19 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formBox = document.getElementById("form-box");
+            const registerButton = document.querySelector(".register-button");
+
+            registerButton.addEventListener("click", function() {
+                formBox.classList.add("slide-up");
+            });
+        });
+    </script>
 </body>
 </html>

@@ -173,3 +173,25 @@ input:focus {
 .register-button:hover::after {
     width: 100%;
 }
+
+@keyframes slide-to-top {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-150%);
+    }
+}
+
+.slide-up {
+    animation: slide-to-top 0.5s ease forwards;
+}
+
+.form-box {
+    transition: transform 0.5s;
+    transform: translateY(0);
+}
+
+.form-box.slide-up {
+    transform: translateY(-100%);
+}
