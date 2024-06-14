@@ -39,24 +39,73 @@
                         </div>
                         <button type="submit" class="login-button">Login</button>
                     </form>
-                    <div class="register-box">
-                        <p>Not registered? <button class="register-button">Create an account!</button></p>
+                    <div class="sliding-box">
+                        <p>Not registered? <button class="sliding-button">Create an account!</button></p>
                     </div>
                 </div>
             </div>
-            
+            <div class="register-form-box">
+                <form id="register-form">
+                    
+                    <h2 class = "register-text"> User Registration</h2>
+
+                    <div class="register-input">
+                        <div class="input-group">
+                            <input type="text" placeholder="First Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Last Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="register-submit">Register</button>
+                    </div>
+                </form>
+                <div class="sliding-box">
+                    <p>&nbsp&nbsp&nbspAlready have an existing account? <button class="sliding-button sign-in-button">Sign in!</button></p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // so help me GOD abdur
+        // i hate everythingggg but it works, sorry for the messy code
+        
         document.addEventListener("DOMContentLoaded", function() {
             const formBox = document.getElementById("form-box");
-            const registerButton = document.querySelector(".register-button");
+            const registerButton = document.querySelector(".sliding-button");
+            const registerFormBox = document.querySelector(".register-form-box");
+            const signInButton = document.querySelector(".sign-in-button");
 
             registerButton.addEventListener("click", function() {
-                formBox.classList.add("slide-up");
+                if (!formBox.classList.contains("slide-up")) {
+                    formBox.classList.add("slide-up");
+                    formBox.style.animation = "slide-up 0.5s ease forwards";
+                    registerFormBox.style.display = "block";
+                    registerFormBox.style.animation = "slide-up-bottom 0.5s ease forwards"; 
+                }
+            });
+
+            signInButton.addEventListener("click", function() {
+                if (formBox.classList.contains("slide-up")) {
+                    formBox.classList.remove("slide-up");
+                    formBox.style.animation = "slide-down 0.5s ease forwards";
+                    registerFormBox.style.animation = "slide-down-bottom 0.5s ease forwards";
+                    setTimeout(() => {
+                        registerFormBox.style.display = "none";
+                    }, 500);
+                }
             });
         });
+
     </script>
 </body>
 </html>

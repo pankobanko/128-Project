@@ -5,12 +5,16 @@
     font-family: Raleway, sans-serif;
 }
 
+body {
+    overflow: hidden;
+}
+
 .raleway-m {
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: 900;
     font-style: normal;
-  }
+}
 
 .entire {
     height: 100vh;
@@ -19,6 +23,7 @@
     background-position: center;
     background-size: cover;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .navbar {
@@ -144,13 +149,13 @@ input:focus {
 
 }   
 
-.register-box {
+.sliding-box {
     padding: 20px;
     font-size: 12.5px;
     margin-right: 25px;
 }
 
-.register-button {
+.sliding-button {
     font-size: 12.5px;
     background: transparent;
     color: #278161;
@@ -159,7 +164,7 @@ input:focus {
     position: relative;
 }
 
-.register-button::after {
+.sliding-button::after {
     content: '';
     position: absolute;
     width: 0;
@@ -170,7 +175,7 @@ input:focus {
     transition: width 0.35s;
 }
 
-.register-button:hover::after {
+.sliding-button:hover::after {
     width: 100%;
 }
 
@@ -195,3 +200,92 @@ input:focus {
 .form-box.slide-up {
     transform: translateY(-100%);
 }
+
+.register-form-box {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 33%;
+    background: transparent;
+    animation: slide-from-bottom 0.5s ease forwards;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.register-text {
+    color: #278161;
+    padding: 50px 10px;
+    font-size: 2em;
+}
+
+.register-input .input-group {
+    margin-bottom: 20px;
+}
+
+.register-submit {
+    background:transparent;
+    border: 2px solid #278161;
+    color: #278161;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 0.6 px;
+    margin-top: 10px;
+    max-width: 100%;
+    width: 300px;
+}
+
+.register-submit:hover {
+    margin-top: 10px;
+    background: rgba(39, 129, 97, 1);
+    border: 2px solid transparent;
+    color: white;
+    transition: background 0.2s;
+
+}   
+@keyframes slide-up {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-200%);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-200%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-up-bottom {
+    from {
+        transform: translateY(150%);
+    }
+    to {
+        transform: translateY(-20%);
+    }
+}
+
+@keyframes slide-down-bottom {
+    from {
+        transform: translateY(-20%);
+    }
+    to {
+        transform: translateY(150%);
+    }
+}
+
+.form-box {
+    animation: slide-down 0.5s ease forwards;
+}
+
+.register-form-box {
+    animation: slide-down-bottom 0.5s ease forwards;
+}
+
