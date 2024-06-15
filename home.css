@@ -64,7 +64,7 @@ a:hover{
 .page {
     flex: 1;
     display: flex;
-    min-height: 120vh;
+    min-height: 160vh;
     justify-content: center;
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.5);
     background: #1a1616;
