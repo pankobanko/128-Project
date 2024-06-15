@@ -5,6 +5,14 @@
     font-family: Raleway, sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: white;    
+}
+a:hover{
+    text-decoration: underline;
+}
+
 .raleway-m {
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
@@ -84,11 +92,11 @@
 }
 
 .scroll-animation span {
-    color: hsl(0 0% 100% / 0.1);
+    color: hsl(0 0% 100% / 0.05);
     background-clip: text;
     background-repeat: no-repeat;
     background-size: 0% 100%;
-    background-image: linear-gradient(90deg, #146cf6, rgb(0, 107, 0));
+    background-image: linear-gradient(90deg, #146cf6, rgb(9, 216, 9));
     animation: scroll-animation linear forwards;
     animation-timeline: view();
 }
@@ -99,8 +107,8 @@
 }
 
 .scroll-animation p span {
-    animation-range-start: cover 22vh;
-    animation-range-end: cover 60vh;
+    animation-range-start: cover 18vh;
+    animation-range-end: cover 56vh;
 }
 
 
@@ -109,3 +117,48 @@
         background-size: 100% 100%; 
     }
 }
+
+
+.recipe-list {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.recipes {
+    border: none;
+    opacity: 0;
+    display: flex;
+    min-width: 100vh;
+    max-width: 1500px;
+    min-height: 10vh;
+    padding: 30px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-left: 5px;
+    line-height: 27px;
+    font-weight: 200;
+    letter-spacing: normal;
+    transition: letter-spacing 0.25s;
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: 250px 500px;
+}
+
+@keyframes fade-in {
+    to { opacity: 1; }
+}
+
+.recipes:hover{
+    background-color: hsl(0 0% 100% / 0.1);
+    letter-spacing: 0.13px;
+    transition: letter-spacing 0.5s;
+}
+
+.recipes img{ 
+    height: 20vh;
+    width: 15vh;
+    margin-right: 20px;
+}
+
