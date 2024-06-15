@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
-    <title>razzka is beautifuler</title>
+    <title>abdur is beautifuler</title>
 </head>
 <body>
     <div class="entire">    
@@ -43,6 +43,10 @@
                         <p>Not registered? <button class="sliding-button">Create an account!</button></p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="left">
+
             </div>
             <div class="register-form-box">
                 <form id="register-form">
@@ -89,8 +93,18 @@
                 if (!formBox.classList.contains("slide-up")) {
                     formBox.classList.add("slide-up");
                     formBox.style.animation = "slide-up 0.5s ease forwards";
-                    registerFormBox.style.display = "block";
-                    registerFormBox.style.animation = "slide-up-bottom 0.5s ease forwards"; 
+                    setTimeout(() => {
+                        registerFormBox.style.display = "block";
+                        registerFormBox.style.animation = "slide-up-bottom 0.5s ease forwards";
+                        formBox.style.display = "none";
+                    }, 300);
+                } else {
+                    formBox.classList.remove("slide-up");
+                    formBox.style.animation = "slide-down 0.5s ease forwards";
+                    registerFormBox.style.animation = "slide-down-bottom 0.5s ease forwards";
+                    setTimeout(() => {
+                        formBox.style.display = "flex";
+                    }, 500);
                 }
             });
 
@@ -101,10 +115,12 @@
                     registerFormBox.style.animation = "slide-down-bottom 0.5s ease forwards";
                     setTimeout(() => {
                         registerFormBox.style.display = "none";
+                        formBox.style.display = "flex";
                     }, 500);
                 }
             });
         });
+
 
     </script>
 </body>

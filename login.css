@@ -202,11 +202,10 @@ input:focus {
 
 .register-form-box {
     display: none;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-    right: 60px;
+    position: fixed;
+    top: 30%;
+    left: 65%;
+    transform: translate(-50%, -50%);
     width: auto;
     max-width: 400px;
     background: transparent;
