@@ -33,7 +33,7 @@ app.post('/register', (req, res) => {
     res.send('Registration done.');
 });
 
-r
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`It be running! ===> ${PORT}`);
