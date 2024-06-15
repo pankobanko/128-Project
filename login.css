@@ -204,6 +204,8 @@ input:focus {
 .register-form-box {
     display: none;
     position: absolute;
+    justify-content: center;
+    align-items: flex-end;
     bottom: 0;
     right: 0;
     width: 33%;
@@ -212,6 +214,7 @@ input:focus {
     padding: 20px;
     box-sizing: border-box;
 }
+
 
 .register-text {
     color: #278161;
