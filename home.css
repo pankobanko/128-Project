@@ -5,6 +5,27 @@
     font-family: Raleway, sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 1em;
+    height: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1616;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #278161;
+    border: 0.3em solid #1a1616;
+    border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #19503d;
+}
+
+
 a {
     text-decoration: none;
     color: white;    
@@ -152,7 +173,7 @@ a:hover{
 
 .recipes:hover{
     background-color: hsl(0 0% 100% / 0.1);
-    letter-spacing: 0.13px;
+    letter-spacing: 0.2px;
     transition: letter-spacing 0.5s;
 }
 
