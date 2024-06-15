@@ -183,7 +183,7 @@ input:focus {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(-150%);
+        transform: translateY(-100%);
     }
 }
 
@@ -252,10 +252,9 @@ input:focus {
     background: rgba(39, 129, 97, 1);
     border: 2px solid transparent;
     color: white;
-    transition: background 0.2s;
+    transition:
+    background 0.2s;
 }
-
-
 
 @keyframes slide-up {
     from {
