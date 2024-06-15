@@ -57,10 +57,59 @@
     flex: 1;
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
     justify-content: center;
-    align-items: center;
+    box-shadow: 0 0 90px rgba(0, 0, 0, 0.5);
+    background: #1a1616;
+    color: white;
 }
+
+.scroll-animation {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.scroll-animation h2 {
+    font-size: 5rem;
+    height: 100px;
+    line-height: 1;
+}
+
+.scroll-animation p {
+    margin-top: 30px;
+    font-size: 1.75rem;
+    line-height: 1.5;
+    max-width: 80ch;
+    margin-inline: auto;
+}
+
+.scroll-animation span {
+    color: hsl(0 0% 100% / 0.1);
+    background-clip: text;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-image: linear-gradient(90deg, #146cf6, rgb(0, 107, 0));
+    animation: scroll-animation linear forwards;
+    animation-timeline: view();
+}
+
+.scroll-animation h2 span {
+    animation-range-start: cover 0vh;
+    animation-range-end: cover 25vh;
+}
+
+.scroll-animation p span {
+    animation-range-start: cover 22vh;
+    animation-range-end: cover 60vh;
+}
+
+
+@keyframes scroll-animation {
+    to { 
+        background-size: 100% 100%; 
+    }
+}
+
 
 .box {
     display: flex;
@@ -87,35 +136,4 @@
     font-size: 2em;
     font-weight: 800;
     color:#278161;
-}
-
-.right form {
-    display: flex;
-    flex-direction: column;
-}
-
-.right form .input-group {
-    margin-bottom: 20px;
-}
-
-input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.5);
-    padding: 10px;
-    padding-bottom: 6px;
-}
-
-input:hover {
-    border-bottom: 2px solid rgba(39, 129, 97, 1);
-    transition: border-bottom 0.2s;
-}
-
-input:focus {
-    outline: none;
-    background: rgba(39, 129, 97, 0.1);
-    transition: background 0.2s;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-bottom: 2px solid rgba(39, 129, 97, 1);
 }
