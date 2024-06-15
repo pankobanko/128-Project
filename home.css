@@ -64,12 +64,12 @@ a:hover{
 .page {
     flex: 1;
     display: flex;
-    height: 100vh;
-    /* overflow: hidden; */
+    min-height: 120vh;
     justify-content: center;
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.5);
     background: #1a1616;
     color: white;
+    padding: 50px;
 }
 
 .scroll-animation {
@@ -157,8 +157,8 @@ a:hover{
 }
 
 .recipes img{ 
-    height: 20vh;
+    height: 19vh;
     width: 15vh;
     margin-right: 20px;
+    border-radius: 15px;
 }
-
