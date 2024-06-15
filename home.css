@@ -109,31 +109,3 @@
         background-size: 100% 100%; 
     }
 }
-
-
-/* .box {
-    display: flex;
-    width: 80%;
-}
-
-.left {
-    flex: 1;
-}
-
-.right {
-    flex: 0 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    max-width: 400px;
-    margin-right: 60px;
-}
-
-.right .text h2 {
-    text-align: center;
-    margin-bottom: 100px;
-    font-size: 2em;
-    font-weight: 800;
-    color:#278161;
-} */
