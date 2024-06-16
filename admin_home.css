@@ -1,11 +1,21 @@
-* {
+:root {
+    --surface-color: #fff;
+    --curve: 40;
+  }
+  
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Raleway, sans-serif;
-}
-
-.navbar {
+    background-image: white;
+  }
+  
+  body {
+    background-color: #fef8f8;
+  }
+  
+  .navbar {
     background: #278161;
     display: flex;
     height: 50px;
@@ -14,90 +24,210 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     z-index: 10;
     position: fixed;
-}
-
-.navbar ul {
+    top: 0;
+    
+  }
+  
+  .navbar ul {
     list-style: none;
     display: flex;
     margin-left: 30px;
     width: 100%;
-}
-
-.navbar ul li {
+  }
+  
+  .navbar ul li {
     padding-right: 20px;
     color: white;
-}
-
-.navbar ul li a {
+  }
+  
+  .navbar ul li a {
     color: white;
     font-weight: 400;
     text-decoration: none;
     display: block;
     justify-content: center;
     align-items: center;
-}
-
-.logout {
+  }
+  
+  .logout {
     position: absolute;
     right: 0;
     margin-right: 2vh;
-}
+  }
+  
+  @keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
 
-.divImg {
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+   }
+
+
+  .divImg {
     position: absolute;
-    top: 0;
+    top: 50px;
     right: 0;
     width: 45%;
-    height: 100vh;
+    height: calc(100vh - 50px);
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 0, 0, 1);
-    
-
-}
-img {
-
+  }
+  
+  img {
     width: 100%;
     height: 100vh;
     padding-left: 0vh;
-}
-
-
-
-.text {
+  }
+  
+  .text {
     position: absolute;
-    top: 45%;
-    left: 2.5%; 
+    top: 17.5%;
+    left: 2.5%;
     transform: translateY(-50%);
     padding: 10vh;
-
-}
-
-.text h1 {
+    animation: fade-up 0.5s forwards;
+  }
+  
+  .text h1 {
     color: #5e9c2f;
     font-size: 9vh;
-    font-weight: 600; 
+    font-weight: 600;
     margin: 0;
-}
-
-.under {
+  }
+  
+  .under {
     position: relative;
     top: 7.5vh;
     font-size: 2vh;
-    
-    
-}
-
-.under h3 {
+  }
+  
+  .under h3 {
     color: #5e9c2f;
     padding: 1vh;
     background-color: rgb(249, 249, 217);
     max-width: 23%;
-}
-
-.under p {
+  }
+  
+  .under p {
     color: rgba(0, 0, 0, 0.711);
     position: relative;
     top: 3vh;
     max-width: 35%;
     line-height: 3.5vh;
-}
+  }
+  
+  .options {
+    margin-top: 105vh;
+    padding: 20px;
+    background-color: #2e9973;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .options .images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    list-style-type: none;
+    margin: 0;
+  }
+  
+  .card {
+    position: relative;
+    display: block;
+    height: 100%;
+    border-radius: calc(var(--curve) * 1px);
+    overflow: hidden;
+    text-decoration: none;
+    
+  }
+  
+  .card__image {
+    width: 100%;
+    height: auto;
+    filter: blur(0);
+    transition: filter 0.2s ease-in-out;
+  }
+  
+  .card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    border-radius: calc(var(--curve) * 1px);
+    background-color: var(--surface-color);
+    transform: translateY(100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card:hover .card__overlay {
+    transform: translateY(0);
+  }
+  
+  .card__header {
+    
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 2em;
+    border-radius: calc(var(--curve) * 1px) 0 0 0;
+    background-color: var(--surface-color);
+    transform: translateY(-100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card__arc {
+    
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    z-index: 1;
+  }
+  
+  .card__arc path {
+    fill: var(--surface-color);
+    d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+  }
+  
+  .card:hover .card__header {
+    transform: translateY(0);
+  }
+  
+  .card__title {
+    
+    font-size: 7.5vh;
+    margin: 0 0 .3em;
+    color: #5e1111;
+    margin-left: 5vh;
+  }
+  
+
+  
+  .card__description {
+    padding: 0 7.5vh 10vh;
+    font-size: 2.5vh;
+    margin: 0;
+    color: #D7BDCA;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+  
+  .card:hover .card__image {
+    filter: blur(10px);
+    }
+
+    
+    
