@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Raleway, sans-serif;
+    background: #1a1616;
+    line-height: 1.5;
+    font-size: large;
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+    height: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1616;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #19503d;
+    border: 0.3em solid #1a1616;
+    border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #278161;
+}
+
+.entire {
+    height: 100vh;
+    display: flex;
+    background: url(assets/home.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    flex-direction: column;
+
+}
+
+.navbar {
+    background: transparent;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    padding: 30px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin-left: 30px;
+}
+
+.navbar ul li {
+    padding-right: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight:500;
+    text-decoration: none;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+div {
+    margin-bottom: 100px;
+}
+.page {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    align-content: center;
+    margin-top: 100px;
+    width: 50vw;
+    padding: 100px;
+}
+
+.page h1 {
+    font-weight: 800;
+    font-size: 2em;
+    letter-spacing: 1.6;
+    line-height: 1.7;
+}
+
