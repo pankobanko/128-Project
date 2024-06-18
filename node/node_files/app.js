@@ -20,7 +20,7 @@ con.connect((err) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../public/html/login.html'));
+    res.sendFile(path.join(__dirname, '../../public/html/home.html'));
 });
 
 app.post('/register', (req, res) => {
