@@ -28,13 +28,17 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/login.html'));
 });
 
+app.get('/admin_home', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
+});
+
 app.post("/login", function(req, res){
-    var username = res.body.username;
-    var password = res.body.password;
+    var username = req.body.username;
+    var password = req.body.password;
     const login = `SELECT * FROM users WHERE username = ? and password = ?`;
     con.query(login, [username, password], function(err, results, fields){
         if (results.length > 0) {
-            res.redirect("/");
+            res.redirect("/admin_home");
         } else {
             res.redirect("/login")
         }
