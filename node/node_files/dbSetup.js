@@ -24,8 +24,8 @@ con.connect(function (err) {
         username VARCHAR(50) NOT NULL,
         email VARCHAR(100) NOT NULL,
         password VARCHAR(255) NOT NULL,
-        firstname VARCHAR(50),
-        lastname VARCHAR(50)
+        firstname VARCHAR(50) NOT NULL,
+        lastname VARCHAR(50) NOT NULL
     )`;
 
     con.query(sql, function (err, result) {
