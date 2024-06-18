@@ -30,12 +30,12 @@
                         <h2>User Login</h2>
                     </div>
                     
-                    <form>
+                    <form action="/login" method="POST">
                         <div class="input-group">
-                            <input type="text" placeholder="Username" required>
+                            <input type="text" placeholder="Username" name="username" required>
                         </div>
                         <div class="input-group">
-                            <input type="password" placeholder="Password" required>
+                            <input type="password" placeholder="Password" name="password" required>
                         </div>
                         <button type="submit" class="login-button">Login</button>
                     </form>
@@ -49,31 +49,31 @@
 
             </div>
             <div class="register-form-box">
-                <form id="register-form" action ="/register" method = "POST">
+                <form id="register-form" action="/register" method="POST">
                     
-                    <h2 class = "register-text"> User Registration</h2>
+                    <h2 class="register-text"> User Registration</h2>
 
                     <div class="register-input">
                         <div class="input-group">
-                            <input type="text" placeholder="First Name" required>
+                            <input type="text" placeholder="First Name" name="firstname" required>
                         </div>
                         <div class="input-group">
-                            <input type="text" placeholder="Last Name" required>
+                            <input type="text" placeholder="Last Name" name="lastname" required>
                         </div>
                         <div class="input-group">
-                            <input type="text" placeholder="Username" required>
+                            <input type="text" placeholder="Username" name="username" required> 
                         </div>
                         <div class="input-group">
-                            <input type="email" placeholder="Email" required>
+                            <input type="email" placeholder="Email" name="email" required>
                         </div>
                         <div class="input-group">
-                            <input type="password" placeholder="Password" required>
+                            <input type="password" placeholder="Password" name="password" required>
                         </div>
                         <button type="submit" class="register-submit">Register</button>
                     </div>
                 </form>
                 <div class="sliding-box">
-                    <p class = "text-registered">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAlready have an existing account? <button class="sliding-button sign-in-button">Sign in!</button></p>
+                    <p class="text-registered">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAlready have an existing account? <button class="sliding-button sign-in-button">Sign in!</button></p>
                 </div>
             </div>
         </div>
@@ -120,8 +120,6 @@
                 }
             });
         });
-
-
     </script>
 </body>
 </html>
