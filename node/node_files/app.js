@@ -53,7 +53,7 @@ app.post('/register', (req, res) => {
     con.query(register, [username, email, password, firstname, lastname], (err, result) => {
         if (err) throw err;
 
-        console.log("jordan be registered!");
+        console.log("Registration complete!");
         res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
     });
 });
