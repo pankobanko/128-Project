@@ -5,13 +5,18 @@ const con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "loginDB" 
 });
 
 
 con.connect(function (err) {
     if (err) throw err;
     console.log("Connected to MySQL!");
+
+    var sql = "CREATE DATABASE loginDB";
+    con.query(sql, function(err, result){
+        if (err) throw err;
+        console.log("Database Created!");
+    });
 
     const sql = `
     CREATE TABLE IF NOT EXISTS users (

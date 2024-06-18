@@ -23,8 +23,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/home.html'));
 });
 
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/login.html'));
+});
+
 app.post('/register', (req, res) => {
-    res.send('Registration done.');
+    res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
 });
 
 const PORT = process.env.PORT || 3000;
