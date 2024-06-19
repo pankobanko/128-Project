@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adding Recipes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/add.css">
-
+    <title>Adding Recipes</title>
 </head>
 <body>
-    
     <div class="entire">    
         <div class="navbar">
             <nav>    
@@ -16,7 +17,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li class = "logout"><a href = "#">Log Out</a></li>
+                    <li class="logout"><a href="#">Log Out</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,40 +26,52 @@
     <div class="recipe-form-box">
         <form id="recipe-details-form" method="POST">
             <h2 class="recipe-title">Add a Brand New Recipe!</h2>
-            <div class="recipe-input">
+            <div class="input">
                 <label for="recipe-title">Recipe Title:</label><br>
                 <input type="text" id="recipe-title" name="recipe-title" required><br>
     
                 <label for="recipe-description">Recipe Description:</label><br>
                 <textarea id="recipe-description" name="recipe-description" rows="3" cols="80" required></textarea><br>
 
-                <label for = "recipe-details">Preparation and Cooking Duration: </label><br>
+                <label for="recipe-details">Preparation and Cooking Duration:</label><br>
                 <input type="text" id="recipe-details" name="recipe-details" required><br>
     
                 <label for="recipe-image">Recipe Image:</label><br>
                 <input type="file" id="recipe-image" name="recipe-image" accept="image/*" required><br>
+                <div class="button-container">
+                    <button type="button" class="next-button">Next</button>
+                </div>
             </div>
         </form>
     
-        <form id="recipe-ingredients-form" method="POST">
-            <h2 class="form-title">Add Ingredients</h2>
-            <div class="recipe-input">
+        <form id="recipe-next-form" method="POST" class="hidden">
+            <h2 class="recipe-title-2">Add Ingredients and Instructions</h2>
+            <div class="input">
                 <label for="ing">Ingredients:</label><br>
                 <textarea id="ing" name="ing" rows="6" cols="80" required></textarea><br>
-                
-            </div>
-        </form>
-    
 
-        <form id="recipe-instructions-form" method="POST">
-            <h2 class="form-title">Add Instructions</h2>
-            <div class="recipe-input">
                 <label for="inst">Instructions:</label><br>
                 <textarea id="inst" name="inst" rows="6" cols="80" required></textarea><br>
             </div>
         </form>
     </div>
-    
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nextButton = document.querySelector('.next-button');
+            const recipeDetailsForm = document.getElementById('recipe-details-form');
+            const recipeNextForm = document.getElementById('recipe-next-form');
+            const recipeFormBox = document.querySelector('.recipe-form-box');
+
+            nextButton.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                recipeDetailsForm.classList.add('hidden');
+                recipeNextForm.classList.remove('hidden');
+                
+                recipeFormBox.classList.add('animate-fade-up');
+            });
+        });
+    </script>
 </body>
 </html>
