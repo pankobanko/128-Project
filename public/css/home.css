@@ -7,6 +7,7 @@
 
 ::-webkit-scrollbar {
     width: 1em;
+    height: 0;
 }
 
 ::-webkit-scrollbar-track {
@@ -99,6 +100,7 @@ a:hover{
     top: 50%;
     transform: translate(0%, -50%); 
     user-select: none; 
+    overflow-y: hidden;
 }
   
 #image-track > .image {
@@ -106,6 +108,7 @@ a:hover{
     height: 56vmin;
     object-fit: cover;
     object-position: 100% center;
+    overflow-y: hidden;
 }
 
 .scroll-animation {
