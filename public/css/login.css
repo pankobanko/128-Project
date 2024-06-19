@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     font-family: Raleway, sans-serif;
-    color: white;
 }
 
 body {
@@ -20,8 +19,8 @@ body {
 .entire {
     height: 100vh;
     display: flex;
-    background: url(https://images.unsplash.com/photo-1447078806655-40579c2520d6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-    background-position: left;
+    background: url(../assets/wrap-01.jpg);
+    background-position: center;
     background-size: cover;
     flex-direction: column;
     overflow: hidden;
@@ -89,8 +88,6 @@ body {
     font-size: 2em;
     font-weight: 800;
     color: #278161;
-    justify-content: center;
-    align-items: center;
 }
 
 .right form {
