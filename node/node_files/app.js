@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
@@ -8,10 +9,16 @@ const encoder = bodyParser.urlencoded();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../public')));
 
+app.use(session({
+    secret: 'verybigsecret',
+    resave: false,
+    saveUninitialized: true,
+}));
+
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "passwordfor128",
     database: "loginDB"
 });
 
@@ -29,7 +36,11 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/admin_home', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
+    if (req.session.loggedin){
+        res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
+    } else {
+        res.redirect('/login')
+    }
 });
 
 app.post("/login", function(req, res){
@@ -38,6 +49,9 @@ app.post("/login", function(req, res){
     const login = `SELECT * FROM users WHERE username = ? and password = ?`;
     con.query(login, [username, password], function(err, results, fields){
         if (results.length > 0) {
+            req.session.loggedin = true; // Set session loggedin to true
+            req.session.username = username; // Store username in session
+            console.log('Login successful:', req.session); // Log session data
             res.redirect("/admin_home");
         } else {
             res.redirect("/login")
@@ -58,7 +72,19 @@ app.post('/register', (req, res) => {
         if (err) throw err;
 
         console.log("Registration complete!");
-        res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
+        req.session.loggedin = true; // Set session loggedin to true
+        req.session.username = username; // Store username in session
+        console.log('Registration successful:', req.session); 
+        res.redirect('/admin_home');
+    });
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.redirect('/admin_home');
+        }
+        res.redirect('/');
     });
 });
 

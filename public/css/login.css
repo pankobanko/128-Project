@@ -88,6 +88,8 @@ body {
     font-size: 2em;
     font-weight: 800;
     color: #278161;
+    justify-content: center;
+    align-items: center;
 }
 
 .right form {
