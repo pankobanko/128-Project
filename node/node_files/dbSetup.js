@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128",
+    password: "password",
 });
 
 con.connect(function (err) {
@@ -18,7 +18,7 @@ con.connect(function (err) {
             if (err) throw err;
             console.log("Connected to loginDB.");
 
-            const createTable = `
+            const createTableUsers = `
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 username VARCHAR(50) NOT NULL,
@@ -28,10 +28,24 @@ con.connect(function (err) {
                 lastname VARCHAR(50)
             )`;
 
-            con.query(createTable, function (err, result) {
+            con.query(createTableUsers, function (err, result) {
                 if (err) throw err;
-                console.log("Users already exists.");
-                con.end();
+                console.log("Users table created.");
+
+                const createTableRecipes = `
+                CREATE TABLE IF NOT EXISTS recipes (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(255),
+                    description VARCHAR(5000),
+                    ing VARCHAR(5000),
+                    inst VARCHAR(5000)
+                )`;
+
+                con.query(createTableRecipes, function (err, result) {
+                    if (err) throw err;
+                    console.log("Recipes table created.");
+                    con.end();
+                });
             });
         });
     });
