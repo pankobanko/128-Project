@@ -43,11 +43,11 @@ Boilerplate for recipe sites:
     </div>
     <div class="page">
         <div class="recipe-info">
-            <h1 id="title"></h1> <!--  food name/type -->
-            <p id="description"></p> <!-- description -->
+            <h1 id="recipe-title"></h1> <!--  food name/type -->
+            <p id="recipe-description"></p> <!-- description -->
             <br><br>
             <h2 id="information">Preparation details</h2> <!-- i.e cooking time, prep time  -->
-            <p id="details"></p> <!-- details to be entered here -->
+            <p id="recipe-details"></p> <!-- details to be entered here -->
         </div>
         <div class="ing">  <!-- ingredients list, i.e 200g cheese -->
             <h2 id="sub1"></h2>
