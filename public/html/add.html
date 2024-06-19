@@ -24,15 +24,18 @@
     
     <div class="recipe-form-box">
         <form id="recipe-details-form" method="POST">
-            <h2 class="form-title">Add a Brand New Recipe!</h2>
+            <h2 class="recipe-title">Add a Brand New Recipe!</h2>
             <div class="recipe-input">
-                <label for="recipe-title">Recipe Title:</label>
+                <label for="recipe-title">Recipe Title:</label><br>
                 <input type="text" id="recipe-title" name="recipe-title" required><br>
     
-                <label for="recipe-description">Recipe Description:</label>
-                <textarea id="recipe-description" name="recipe-description" rows="3" cols="60" required></textarea><br>
+                <label for="recipe-description">Recipe Description:</label><br>
+                <textarea id="recipe-description" name="recipe-description" rows="3" cols="80" required></textarea><br>
+
+                <label for = "recipe-details">Preparation and Cooking Duration: </label><br>
+                <input type="text" id="recipe-details" name="recipe-details" required><br>
     
-                <label for="recipe-image">Recipe Image:</label>
+                <label for="recipe-image">Recipe Image:</label><br>
                 <input type="file" id="recipe-image" name="recipe-image" accept="image/*" required><br>
             </div>
         </form>
@@ -40,26 +43,9 @@
         <form id="recipe-ingredients-form" method="POST">
             <h2 class="form-title">Add Ingredients</h2>
             <div class="recipe-input">
-                <label for="ing1">Ingredient 1:</label>
-                <input type="text" id="ing1" name="ing1" required><br>
-                <label for="ing2">Ingredient 2:</label>
-                <input type="text" id="ing2" name="ing2" required><br>
-                <label for="ing3">Ingredient 3:</label>
-                <input type="text" id="ing3" name="ing3" required><br>
-                <label for="ing4">Ingredient 4:</label>
-                <input type="text" id="ing4" name="ing4" required><br>
-                <label for="ing5">Ingredient 5:</label>
-                <input type="text" id="ing5" name="ing5" required><br>
-                <label for="ing6">Ingredient 6:</label>
-                <input type="text" id="ing6" name="ing6" required><br>
-                <label for="ing7">Ingredient 7:</label>
-                <input type="text" id="ing7" name="ing7" required><br>
-                <label for="ing8">Ingredient 8:</label>
-                <input type="text" id="ing8" name="ing8" required><br>
-                <label for="ing9">Ingredient 9:</label>
-                <input type="text" id="ing9" name="ing9" required><br>
-                <label for="ing10">Ingredient 10:</label>
-                <input type="text" id="ing10" name="ing10" required><br>
+                <label for="ing">Ingredients:</label><br>
+                <textarea id="ing" name="ing" rows="6" cols="80" required></textarea><br>
+                
             </div>
         </form>
     
@@ -67,26 +53,8 @@
         <form id="recipe-instructions-form" method="POST">
             <h2 class="form-title">Add Instructions</h2>
             <div class="recipe-input">
-                <label for="inst1">Instruction 1:</label>
-                <input type="text" id="inst1" name="inst1" required><br>
-                <label for="inst2">Instruction 2:</label>
-                <input type="text" id="inst2" name="inst2" required><br>
-                <label for="inst3">Instruction 3:</label>
-                <input type="text" id="inst3" name="inst3" required><br>
-                <label for="inst4">Instruction 4:</label>
-                <input type="text" id="inst4" name="inst4" required><br>
-                <label for="inst5">Instruction 5:</label>
-                <input type="text" id="inst5" name="inst5" required><br>
-                <label for="inst6">Instruction 6:</label>
-                <input type="text" id="inst6" name="inst6" required><br>
-                <label for="inst7">Instruction 7:</label>
-                <input type="text" id="inst7" name="inst7" required><br>
-                <label for="inst8">Instruction 8:</label>
-                <input type="text" id="inst8" name="inst8" required><br>
-                <label for="inst9">Instruction 9:</label>
-                <input type="text" id="inst9" name="inst9" required><br>
-                <label for="inst10">Instruction 10:</label>
-                <input type="text" id="inst10" name="inst10" required><br>
+                <label for="inst">Instructions:</label><br>
+                <textarea id="inst" name="inst" rows="6" cols="80" required></textarea><br>
             </div>
         </form>
     </div>
