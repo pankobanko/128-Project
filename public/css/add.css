@@ -185,7 +185,7 @@ input[type="file"] {
     justify-content: center;
 }
 
-.next-button {
+.next-button, .submit-button, .back-button {
     background: transparent;
     border: 2px solid #278161;
     color: #278161;
@@ -199,7 +199,7 @@ input[type="file"] {
     width: 100px;
 }
 
-.next-button:hover {
+.next-button:hover, .submit-button:hover, .back-button:hover {
 
     margin-top: 10px;
     background: rgba(39, 129, 97, 1);
@@ -207,4 +207,6 @@ input[type="file"] {
     color: white;
     transition: background 0.2s;
 }
+
+
 
