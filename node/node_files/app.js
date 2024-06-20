@@ -49,7 +49,9 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/login.html'));
 });
 
-
+app.get('/about_us', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/About_Us.html'));
+});
 
 
 app.get('/admin_home', (req, res) => {
@@ -115,9 +117,10 @@ app.post('/add-recipe', upload.single('recipe-image'), (req, res) => {
     con.query(insertRecipe, [name, description, category, ing, inst, image], (err, result) => {
         if (err) {
             console.error('There has been an error with uploading the recipe:', err);
-            res.status(500).send('');
+            res.status(500).send(''); 
         } else {
-            fm.addRecipe();
+            const newRecipeID = result.insertId; 
+            fm.addRecipe(newRecipeID);
             res.redirect('/admin_home');
         }
     });
