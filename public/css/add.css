@@ -104,7 +104,7 @@ body {
 
 .recipe-form-box {
     flex: 0 1 auto;  
-    padding: 50px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;  
@@ -125,7 +125,7 @@ body {
     text-align: center;
     width: 100%;
     padding-bottom: 50px;
-    padding-top: 20px;
+    padding-top: 0px;
     color: #278161;
 }
 

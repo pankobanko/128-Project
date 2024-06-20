@@ -24,7 +24,7 @@
     </div>
     
     <div class="recipe-form-box">
-        <form id="recipe-form" method="POST">
+        <form id="recipe-form" method="POST" enctype="multipart/form-data">
             
             <div id="recipe-details-section">
                 <h2 class="recipe-title">Add a Brand New Recipe!</h2>
@@ -34,6 +34,9 @@
         
                     <label for="recipe-description">Recipe Description:</label><br>
                     <textarea id="recipe-description" name="recipe-description" rows="3" cols="80" required></textarea><br>
+
+                    <label for = "recipe-category">Recipe Category/Cuisine Type: </label><br>
+                    <input type = "text" id = "recipe-category" name = "recipe-category" required><br>
 
                     <label for="recipe-details">Preparation and Cooking Duration:</label><br>
                     <input type="text" id="recipe-details" name="recipe-details" required><br>
