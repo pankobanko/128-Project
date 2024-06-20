@@ -4,6 +4,7 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "formidable": "^3.5.1",
+    "fs-extra": "^11.2.0",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "upper-case": "^3.0.0"
