@@ -129,7 +129,9 @@ const code = `<!DOCTYPE html>   <!-- BOILERPLATE CODE -->
             <h2 id="sub2">Preparations and Instructions</h2>
             <p id="inst"></p>
         </div>
+        <img id="img"> ///// 
     </div>
+    
 </body>
 </html>`
 
