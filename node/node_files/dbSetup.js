@@ -37,8 +37,10 @@ con.connect(function (err) {
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name VARCHAR(255),
                     description VARCHAR(5000),
+                    category VARCHAR(255),
                     ing VARCHAR(5000),
-                    inst VARCHAR(5000)
+                    inst VARCHAR(5000),
+                    image VARCHAR(255)
                 )`;
 
                 con.query(createTableRecipes, function (err, result) {

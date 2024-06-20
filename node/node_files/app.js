@@ -3,6 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
+const multer = require('multer');
 const app = express();
 const encoder = bodyParser.urlencoded();
 
@@ -18,7 +19,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128",
+    password: "password", // Change password
     database: "loginDB"
 });
 
@@ -26,6 +27,18 @@ con.connect((err) => {
     if (err) throw err;
     console.log("Connected to DB");
 });
+
+// i bless stackoverflow
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ fileStorage: fleStorage });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/home.html'));
@@ -41,6 +54,10 @@ app.get('/admin_home', (req, res) => {
     } else {
         res.redirect('/login')
     }
+});
+
+app.get('/add-recipe', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/add.html'));
 });
 
 app.post("/login", function(req, res){
@@ -80,6 +97,27 @@ app.post('/register', (req, res) => {
 });
 
 
+app.post('/add-recipe', upload.single('recipe-image'), (req, res) => {
+    var name = req.body['recipe-title'];
+    var description = req.body['recipe-description'];
+    var category = req.body['recipe-category'];
+    var ing = req.body['ing'];
+    var inst = req.body['inst'];
+    var image = req.file ? req.file.filename : null;
+
+    var insertRecipe = `
+    INSERT INTO recipes (name, description, category, ing, inst, image) 
+    VALUES (?, ?, ?, ?, ?, ?)`;
+    con.query(insertRecipe, [name, description, category, ing, inst, image], (err, result) => {
+        if (err) {
+            console.error('There has been an error with uploading the recipe:', err);
+            res.status(500).send('Error!');
+        } else {
+            res.redirect('/admin_home');
+        }
+    });
+});
+
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -88,6 +126,9 @@ app.get('/logout', (req, res) => {
         res.redirect('/');
     });
 });
+
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
