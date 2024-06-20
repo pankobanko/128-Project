@@ -28,8 +28,8 @@ con.connect((err) => {
     console.log("Connected to DB");
 });
 
-// i bless stackoverflow
-const fileStorage = multer.diskStorage({
+
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/');
     },
@@ -38,7 +38,7 @@ const fileStorage = multer.diskStorage({
     }
 });
 
-const upload = multer({ fileStorage: fleStorage });
+const upload = multer({ storage: storage });
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/home.html'));
@@ -105,13 +105,13 @@ app.post('/add-recipe', upload.single('recipe-image'), (req, res) => {
     var inst = req.body['inst'];
     var image = req.file ? req.file.filename : null;
 
-    var insertRecipe = `
+    const insertRecipe = `
     INSERT INTO recipes (name, description, category, ing, inst, image) 
     VALUES (?, ?, ?, ?, ?, ?)`;
     con.query(insertRecipe, [name, description, category, ing, inst, image], (err, result) => {
         if (err) {
             console.error('There has been an error with uploading the recipe:', err);
-            res.status(500).send('Error!');
+            res.status(500).send('');
         } else {
             res.redirect('/admin_home');
         }
