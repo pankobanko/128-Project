@@ -19,7 +19,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password", // Change password
+    password: "passwordfor128", // Change password
     database: "loginDB"
 });
 
@@ -126,6 +126,7 @@ app.get('/logout', (req, res) => {
         res.redirect('/');
     });
 });
+
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
