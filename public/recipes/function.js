@@ -1,6 +1,7 @@
 const fs = require("fs");
-
 const filename = "rec";
+const path = require("path");
+
 var counter = 3;
 
 const code = ` // boilerplate
@@ -44,13 +45,15 @@ const code = ` // boilerplate
     
 </body>
 </html>
-`
-exports.addRecipe = function(){                                                                   ///////////////////////////////////////////////////////////////////////////////////
+`;
+
+exports.addRecipe = function() {
     recipeappend();
 }
 
-function recipeappend(){
-    fs.appendFile("rec" + (++counter) + ".html", code, function (err){
+function recipeappend() {
+    const pathing = path.join(__dirname, '../../public/recipes', filename + (++counter) + '.html');
+    fs.appendFile(pathing, code, function(err) {
         if (err) throw err;
         console.log("new file successfully created with boilerplate attached.");
     });

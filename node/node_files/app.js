@@ -5,8 +5,6 @@ const mysql = require('mysql');
 const path = require('path');
 const multer = require('multer');
 const app = express();
-const encoder = bodyParser.urlencoded();
-var fs = require("fs");
 var fm = require("../../public/recipes/function");
 
 
@@ -22,7 +20,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128", // Change password
+    password: "password", // Change password
     database: "loginDB"
 });
 
@@ -58,7 +56,7 @@ app.get('/admin_home', (req, res) => {
     if (req.session.loggedin){
         res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
     } else {
-        res.redirect('/login')
+        res.redirect('/login');
     }
 });
 
@@ -77,7 +75,7 @@ app.post("/login", function(req, res){
             console.log('Login successful:', req.session); // Log session data
             res.redirect("/admin_home");
         } else {
-            res.redirect("/login")
+            res.redirect("/login");
         }
         res.end();
     })
