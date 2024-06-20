@@ -54,10 +54,8 @@
                 <textarea id="inst" name="inst" rows="6" cols="80" required></textarea><br>
             </div>
             <div class="button-container">
-                <button type = "button" class = "back-button">Back</button>
-                <div class = "space">
-                    
-                </div>
+                <button type="button" class="back-button">Back</button>
+                <div class="space"></div>
                 <button type="button" class="submit-button">Submit</button>
             </div>
         </form>
@@ -67,17 +65,38 @@
         document.addEventListener('DOMContentLoaded', function () {
             const nextButton = document.querySelector('.next-button');
             const backButton = document.querySelector('.back-button');
+            const submitButton = document.querySelector('.submit-button');
             const recipeDetailsForm = document.getElementById('recipe-details-form');
             const recipeNextForm = document.getElementById('recipe-next-form');
             const recipeFormBox = document.querySelector('.recipe-form-box');
 
+            function checkFormFields(form) {
+                const formFields = form.querySelectorAll('[required]');
+                let fieldsFilled = true;
+
+                // Goes through a loop that checks if every field has a value; if no value, fieldsFilled boolean is returned false and gives an error
+                formFields.forEach(function (field) {
+                    if (!field.value) {
+                        fieldsFilled = false;
+                        field.classList.add('error');
+                    } else {
+                        field.classList.remove('error');
+                    }
+                });
+                return fieldsFilled;
+            }
+
             nextButton.addEventListener('click', function (event) {
                 event.preventDefault();
-                recipeFormBox.classList.remove('animate-fade-up');
-                recipeDetailsForm.classList.add('hidden');
-                recipeNextForm.classList.remove('hidden');
-                void recipeFormBox.offsetWidth; // razzka remember this is for the force browser to trigger reflow command, it recalculates any visual updates thingy
-                recipeFormBox.classList.add('animate-fade-up')
+                if (checkFormFields(recipeDetailsForm)) {
+                    recipeFormBox.classList.remove('animate-fade-up');
+                    recipeDetailsForm.classList.add('hidden');
+                    recipeNextForm.classList.remove('hidden');
+                    void recipeFormBox.offsetWidth; // Recalculates any new visual updates to trigger reflow command thingy
+                    recipeFormBox.classList.add('animate-fade-up');
+                } else {
+                    alert('Please fill out all the required fields for adding the new recipe before clicking next.');
+                }
             });
 
             backButton.addEventListener('click', function (event) {
@@ -85,11 +104,20 @@
                 recipeFormBox.classList.remove('animate-fade-up');
                 recipeNextForm.classList.add('hidden');
                 recipeDetailsForm.classList.remove('hidden');
-                void recipeFormBox.offsetWidth; // razzka remember this is for the force browser to trigger reflow command
+                void recipeFormBox.offsetWidth; // Recalculates any new visual updates to trigger reflow command thingy
                 recipeFormBox.classList.add('animate-fade-up');
             });
-        });
 
+            submitButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                if (checkFormFields(recipeNextForm)) {
+
+                    recipeNextForm.submit();
+                } else {
+                    alert('Please fill out all the required fields for the recipe\'s ingredients and instructions before submitting.');
+                }
+            });
+        });
     </script>
 </body>
 </html>
