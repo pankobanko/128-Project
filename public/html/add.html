@@ -24,39 +24,42 @@
     </div>
     
     <div class="recipe-form-box">
-        <form id="recipe-details-form" method="POST">
-            <h2 class="recipe-title">Add a Brand New Recipe!</h2>
-            <div class="input">
-                <label for="recipe-title">Recipe Title:</label><br>
-                <input type="text" id="recipe-title" name="recipe-title" required><br>
-    
-                <label for="recipe-description">Recipe Description:</label><br>
-                <textarea id="recipe-description" name="recipe-description" rows="3" cols="80" required></textarea><br>
+        <form id="recipe-form" method="POST">
+            
+            <div id="recipe-details-section">
+                <h2 class="recipe-title">Add a Brand New Recipe!</h2>
+                <div class="input">
+                    <label for="recipe-title">Recipe Title:</label><br>
+                    <input type="text" id="recipe-title" name="recipe-title" required><br>
+        
+                    <label for="recipe-description">Recipe Description:</label><br>
+                    <textarea id="recipe-description" name="recipe-description" rows="3" cols="80" required></textarea><br>
 
-                <label for="recipe-details">Preparation and Cooking Duration:</label><br>
-                <input type="text" id="recipe-details" name="recipe-details" required><br>
-    
-                <label for="recipe-image">Recipe Image:</label><br>
-                <input type="file" id="recipe-image" name="recipe-image" accept="image/*" required><br>
-                <div class="button-container">
-                    <button type="button" class="next-button">Next</button>
+                    <label for="recipe-details">Preparation and Cooking Duration:</label><br>
+                    <input type="text" id="recipe-details" name="recipe-details" required><br>
+        
+                    <label for="recipe-image">Recipe Image:</label><br>
+                    <input type="file" id="recipe-image" name="recipe-image" accept="image/*" required><br>
+                    <div class="button-container">
+                        <button type="button" class="next-button">Next</button>
+                    </div>
                 </div>
             </div>
-        </form>
-    
-        <form id="recipe-next-form" method="POST" class="hidden">
-            <h2 class="recipe-title-2">Add Ingredients and Instructions</h2>
-            <div class="input">
-                <label for="ing">Ingredients:</label><br>
-                <textarea id="ing" name="ing" rows="6" cols="80" required></textarea><br>
+            
+            <div id="recipe-next-section" class="hidden">
+                <h2 class="recipe-title-2">Add Ingredients and Instructions</h2>
+                <div class="input">
+                    <label for="ing">Ingredients:</label><br>
+                    <textarea id="ing" name="ing" rows="6" cols="80" required></textarea><br>
 
-                <label for="inst">Instructions:</label><br>
-                <textarea id="inst" name="inst" rows="6" cols="80" required></textarea><br>
-            </div>
-            <div class="button-container">
-                <button type="button" class="back-button">Back</button>
-                <div class="space"></div>
-                <button type="button" class="submit-button">Submit</button>
+                    <label for="inst">Instructions:</label><br>
+                    <textarea id="inst" name="inst" rows="6" cols="80" required></textarea><br>
+                </div>
+                <div class="button-container">
+                    <button type="button" class="back-button">Back</button>
+                    <div class="space"></div>
+                    <button type="submit" class="submit-button">Submit</button>
+                </div>
             </div>
         </form>
     </div>
@@ -65,16 +68,15 @@
         document.addEventListener('DOMContentLoaded', function () {
             const nextButton = document.querySelector('.next-button');
             const backButton = document.querySelector('.back-button');
-            const submitButton = document.querySelector('.submit-button');
-            const recipeDetailsForm = document.getElementById('recipe-details-form');
-            const recipeNextForm = document.getElementById('recipe-next-form');
+            const recipeForm = document.getElementById('recipe-form');
+            const recipeDetailsSection = document.getElementById('recipe-details-section');
+            const recipeNextSection = document.getElementById('recipe-next-section');
             const recipeFormBox = document.querySelector('.recipe-form-box');
 
-            function checkFormFields(form) {
-                const formFields = form.querySelectorAll('[required]');
+            // Goes through a loop that checks if every field has a value; if no value, fieldsFilled boolean is returned false and gives an error
+            function checkFormFields(section) {
+                const formFields = section.querySelectorAll('[required]');
                 let fieldsFilled = true;
-
-                // Goes through a loop that checks if every field has a value; if no value, fieldsFilled boolean is returned false and gives an error
                 formFields.forEach(function (field) {
                     if (!field.value) {
                         fieldsFilled = false;
@@ -85,36 +87,35 @@
                 });
                 return fieldsFilled;
             }
-
+            // Next Button Section
             nextButton.addEventListener('click', function (event) {
                 event.preventDefault();
-                if (checkFormFields(recipeDetailsForm)) {
+                if (checkFormFields(recipeDetailsSection)) {
                     recipeFormBox.classList.remove('animate-fade-up');
-                    recipeDetailsForm.classList.add('hidden');
-                    recipeNextForm.classList.remove('hidden');
+                    recipeDetailsSection.classList.add('hidden');
+                    recipeNextSection.classList.remove('hidden');
                     void recipeFormBox.offsetWidth; // Recalculates any new visual updates to trigger reflow command thingy
                     recipeFormBox.classList.add('animate-fade-up');
                 } else {
-                    alert('Please fill out all the required fields for adding the new recipe before clicking next.');
+                    alert('Fill out all the required fields for adding the new recipe before clicking next.');
                 }
             });
 
+            // Back Button Section
             backButton.addEventListener('click', function (event) {
                 event.preventDefault();
                 recipeFormBox.classList.remove('animate-fade-up');
-                recipeNextForm.classList.add('hidden');
-                recipeDetailsForm.classList.remove('hidden');
+                recipeNextSection.classList.add('hidden');
+                recipeDetailsSection.classList.remove('hidden');
                 void recipeFormBox.offsetWidth; // Recalculates any new visual updates to trigger reflow command thingy
                 recipeFormBox.classList.add('animate-fade-up');
             });
 
-            submitButton.addEventListener('click', function (event) {
-                event.preventDefault();
-                if (checkFormFields(recipeNextForm)) {
-
-                    recipeNextForm.submit();
-                } else {
-                    alert('Please fill out all the required fields for the recipe\'s ingredients and instructions before submitting.');
+            // Submit Button Section
+            recipeForm.addEventListener('submit', function (event) {
+                if (!checkFormFields(recipeNextSection)) {
+                    event.preventDefault();
+                    alert('Fill out all the required fields for ingredients and instructions before submitting.');
                 }
             });
         });
