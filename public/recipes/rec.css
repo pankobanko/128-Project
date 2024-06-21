@@ -3,9 +3,13 @@
     margin: 0;
     padding: 0;
     font-family: Raleway, sans-serif;
+
+
+}
+
+body {
+
     background: #1a1616;
-    line-height: 1.5;
-    font-size: large;
 }
 
 ::-webkit-scrollbar {
@@ -28,41 +32,54 @@
 }
 
 .entire {
-    height: 100vh;
+
     display: flex;
-    background: url(assets/home.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     flex-direction: column;
+    
 
 }
 
 .navbar {
-    background: transparent;
+    background: #241a08;
     display: flex;
-    height: 50px;
+    height: 7.5vh;
     width: 100%;
     align-items: center;
-    padding: 30px;
+    box-shadow: 0 0 3vh rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: fixed;
+    padding: 0 2vh;
+}
+
+.navbar > img {
+    width: auto;
+    height: 50%;
+    margin: 0 auto;
+    padding-right: 20vh;
+    position: relative;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    margin-left: 30px;
+    margin-left: 3vh; 
 }
 
 .navbar ul li {
-    padding-right: 20px;
+    padding-right: 2vh;
 }
 
 .navbar ul li a {
     color: white;
-    font-weight:500;
+    font-weight: 400;
     text-decoration: none;
     display: block;
     justify-content: center;
+    background-color: #241a08;
+    font-size: 2vh;
     align-items: center;
 }
 

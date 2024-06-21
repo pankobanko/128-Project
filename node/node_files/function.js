@@ -30,15 +30,17 @@ exports.addRecipe = function(id) {
                 <link rel="stylesheet" href="rec.css">
             </head>
             <body>
-                <div class="navbar">
-                    <nav>    
-                        <ul>
-                            <li><a href="../home.html">Home</a></li>
-                            <li><a href="../login.html">Log In</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </nav>
+                <div class="entire">    
+                    <div class="navbar">
+                        <nav>    
+                            <ul>
+                                <li><a href="/admin_home">Admin</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <img src="../assets/logo2.png"/>
+                    </div>
                 </div>
                 <div class="page">
                     <div class="recipe-info">
