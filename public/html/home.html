@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cooking Hub - Home</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
@@ -12,13 +12,14 @@
             <nav>    
                 <ul>
                     <li><a href="/admin_home">Admin</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="/about_us">About Us</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
+            <img src="../assets/logo2.png"/>
         </div>
-
     </div>
+    
     <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
         <img class="image" src="../assets/logo.png" draggable="false" />
         <img class="image" src="https://images.unsplash.com/photo-1634864572865-1cf8ff8bd23d?q=80&w=2668&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" draggable="false" />
@@ -43,6 +44,11 @@
                         </span>
                     </p>
                 </section>
+
+                <div class = "search-bar">
+                    <input type = "text" id = "search" name = "search" placeholder="Search a recipe..."> 
+                    <img src = "../assets/search.png" class = "searchImg">
+                </div>
                 
                 <div class="recipe-list"> <!-- Within this div is where recipes are listed; the ids within the elements will be used for JS, for editing or removing.-->
                     <div id="rec1" class="recipes" onclick="window.location.href='../recipes/rec1.html'">
@@ -80,6 +86,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="dropdown">
                         <h1 style="text-align: center;">View More</h1>
                     </div>

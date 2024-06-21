@@ -141,3 +141,26 @@ fs.appendFile(filename + (counter++) + ".html", code, function (err){
 });
 
 
+
+
+                    <div id="rec4" class="recipes" onclick="window.location.href='../recipes/rec4.html'">
+                        <img id="img" src="" >
+                        <div>
+                            <h2 id="title2"></h2><br/>
+                            <p id="desc2"></p>
+                        </div>
+                    </div>
+                    <div id="rec5" class="recipes" onclick="window.location.href='../recipes/rec4.html'">
+                        <img id="img" src="" >
+                        <div>
+                            <h2 id="title2"></h2><br/>
+                            <p id="desc2"></p>
+                        </div>
+                    </div>
+                    <div id="rec6" class="recipes" onclick="window.location.href='../recipes/rec4.html'">
+                        <img id="img" src="" >
+                        <div>
+                            <h2 id="title2"></h2><br/>
+                            <p id="desc2"></p>
+                        </div>
+                    </div>

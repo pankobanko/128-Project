@@ -5,8 +5,8 @@ const mysql = require('mysql');
 const path = require('path');
 const multer = require('multer');
 const app = express();
-const encoder = bodyParser.urlencoded();
-var fs = require("fs");
+var fm = require("./function");
+const fs = require('fs');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +21,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128", // Change password
+    password: "password", // Change password
     database: "loginDB"
 });
 
@@ -50,70 +50,25 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/login.html'));
 });
 
-const filename = "rec";
-var counter = 3;
-
-const code = ` // boilerplate
-<!DOCTYPE html>   
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Viewing</title>
-    <link rel="stylesheet" href="rec.css">
-</head>
-<body>
-    <div class="navbar">
-        <nav>    
-            <ul>
-                <li><a href="../home.html">Home</a></li>
-                <li><a href="../login.html">Log In</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="page">
-        <div class="recipe-info">
-            <h1 id="recipe-title"></h1> <!--  food name/type -->
-            <p id="recipe-description"></p> <!-- description -->
-            <br><br>
-            <h2 id="information">Preparation details</h2> <!-- i.e cooking time, prep time  -->
-            <p id="recipe-details"></p> <!-- details to be entered here -->
-        </div>
-        <div class="ing">  <!-- ingredients list, i.e 200g cheese -->
-            <h2 id="sub1"></h2>
-            <p id="ing"></p>
-
-        </div>
-        <div class="instructs"> <!--  cooking instructions, i.e oven under 80c for 20 minutes / chop carrots until ... -->
-            <h2 id="sub2">Preparations and Instructions</h2>
-            <p id="inst"></p>
-        </div>
-        <img id="img"> ///// 
-    </div>
-    
-</body>
-</html>
-`
-function addRecipe(){                                                                   ///////////////////////////////////////////////////////////////////////////////////
-    fs.appendFile("rec" + (++counter) + ".html", code, function (err){
-        if (err) throw err;
-        console.log("new file successfully created with boilerplate attached.");
-    });
-}
-
+app.get('/about_us', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/About_Us.html'));
+});
 
 
 app.get('/admin_home', (req, res) => {
     if (req.session.loggedin){
         res.sendFile(path.join(__dirname, '../../public/html/admin_home.html'));
     } else {
-        res.redirect('/login')
+        res.redirect('/login');
     }
 });
 
 app.get('/add-recipe', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/add.html'));
+});
+
+app.get('/edit-recipe', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/edit.html'));
 });
 
 app.post("/login", function(req, res){
@@ -127,7 +82,7 @@ app.post("/login", function(req, res){
             console.log('Login successful:', req.session); // Log session data
             res.redirect("/admin_home");
         } else {
-            res.redirect("/login")
+            res.redirect("/login");
         }
         res.end();
     })
@@ -157,25 +112,33 @@ app.post('/add-recipe', upload.single('recipe-image'), (req, res) => {
     var name = req.body['recipe-title'];
     var description = req.body['recipe-description'];
     var category = req.body['recipe-category'];
+    var duration = req.body['recipe-details'];
     var ing = req.body['ing'];
     var inst = req.body['inst'];
     var image = req.file ? req.file.filename : null;
 
     const insertRecipe = `
-    INSERT INTO recipes (name, description, category, ing, inst, image) 
-    VALUES (?, ?, ?, ?, ?, ?)`;
-    con.query(insertRecipe, [name, description, category, ing, inst, image], (err, result) => {
+    INSERT INTO recipes (name, description, category, duration, ing, inst, image) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    con.query(insertRecipe, [name, description, category, duration, ing, inst, image], (err, result) => {
         if (err) {
             console.error('There has been an error with uploading the recipe:', err);
-            res.status(500).send('');
+            res.status(500).send(''); 
         } else {
-            addRecipe();
+            const newRecipeID = result.insertId; 
+            fm.addRecipe(newRecipeID);
             res.redirect('/admin_home');
         }
     });
 });
 
-
+app.get('/get-recipes', (req, res) => {
+    const getRecipes = 'SELECT id, name FROM recipes';
+    con.query(getRecipes, (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
 
 
 
@@ -191,6 +154,67 @@ app.get('/logout', (req, res) => {
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.get('/get-recipe', (req, res) => {
+    const recipeId = req.query.id;
+    const getRecipe = 'SELECT * FROM recipes WHERE id = ?';
+    con.query(getRecipe, [recipeId], (err, result) => {
+        if (err) {
+            console.error('Error in attempt of fetching the recipe:', err);
+            res.status(500).send('');
+        } else {
+            if (result.length > 0) {
+                res.json(result[0]);
+            } else {
+                res.status(404).send('Recipe does not exist.');
+            }
+        }
+    });
+});
+
+app.post('/edit-recipe', upload.single('recipe-image'), (req, res) => {
+    const id = req.body.recipeId;
+    const name = req.body['recipe-title'];
+    const description = req.body['recipe-description'];
+    const category = req.body['recipe-category'];
+    const duration = req.body['recipe-details'];
+    const ing = req.body['ing'];
+    const inst = req.body['inst'];
+
+    const deleteRecipeHTML = (recipeId) => {
+        const filename = `rec${String(parseInt(recipeId))}.html`; 
+        const filePath = path.join(__dirname, '../../public/recipes', filename);
+
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                console.error('Error in attempt to delete:', err);
+            } else {
+                console.log('Recipe deleted!');
+
+                fm.addRecipe(id);
+            }
+        });
+    };
+    
+    const updateRecipeQuery = `
+        UPDATE recipes
+        SET name = ?, description = ?, category = ?, duration = ?, ing = ?, inst = ?
+        WHERE id = ?
+    `;
+    con.query(updateRecipeQuery, [name, description, category, duration, ing, inst, id], (err, result) => {
+        if (err) {
+            console.error('Error updating recipe:', err);
+            res.status(500).send('Error updating recipe.');
+        } else {
+            console.log('Recipe updated successfully.');
+            deleteRecipeHTML(id);
+            res.redirect('/admin_home');
+        }
+    });
+});
+
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
