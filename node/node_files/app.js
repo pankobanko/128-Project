@@ -171,6 +171,31 @@ app.get('/get-recipe', (req, res) => {
     });
 });
 
+app.post('/edit-recipe', upload.single('recipe-image'), (req, res) => {
+    const id = req.body.recipeId;
+    const name = req.body['recipe-title'];
+    const description = req.body['recipe-description'];
+    const category = req.body['recipe-category'];
+    const duration = req.body['recipe-details'];
+    const ing = req.body['ing'];
+    const inst = req.body['inst'];
+    
+    const updateRecipeQuery = `
+        UPDATE recipes
+        SET name = ?, description = ?, category = ?, duration = ?, ing = ?, inst = ?
+        WHERE id = ?
+    `;
+    con.query(updateRecipeQuery, [name, description, category, duration, ing, inst, id], (err, result) => {
+        if (err) {
+            console.error('Error updating recipe:', err);
+            res.status(500).send('Error updating recipe.');
+        } else {
+            console.log('Recipe updated successfully.');
+            res.redirect('/admin_home');
+        }
+    });
+});
+
 
 
 

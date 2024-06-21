@@ -19,7 +19,7 @@
                     <li><a href="#">Contact</a></li>
                     <li class="logout"><a href="#">Log Out</a></li>
                 </ul>
-            </nav>
+            </nav
         </div>
     </div>
 
@@ -36,7 +36,7 @@
 
     <div class = 'recipe-form-box'>
         <!-- Recipe Form (Initially Hidden) -->
-        <form id="recipe-form" method="POST" enctype="multipart/form-data">
+        <form id="recipe-form" method="POST" action = "/edit-recipe" enctype="multipart/form-data">
             <div id="recipe-details-section">
                 <h2 class="recipe-title">Edit the Existing Recipe!</h2>
                 <div class="input">
@@ -50,6 +50,7 @@
                     <input type="text" id="recipe-details" name="recipe-details" required><br>
                     <label for="recipe-image">Recipe Image:</label><br>
                     <input type="file" id="recipe-image" name="recipe-image" accept="image/*" required><br>
+                    <input type="hidden" id="recipe-id" name="recipeId" value="">
                     <div class="button-container">
                         <button type="button" class="next-button">Next</button>
                     </div>
@@ -164,6 +165,7 @@
             const recipeDetailsInput = document.getElementById('recipe-details');
             const ingredientsTextarea = document.getElementById('ing');
             const instructionsTextarea = document.getElementById('inst');
+            const recipeIdInput = document.getElementById('recipe-id');
 
             recipeTitleInput.value = recipeData.name;
             recipeDescriptionTextarea.value = recipeData.description;
@@ -171,6 +173,7 @@
             recipeDetailsInput.value = recipeData.duration;
             ingredientsTextarea.value = recipeData.ing;
             instructionsTextarea.value = recipeData.inst;
+            recipeIdInput.value = recipeData.id;
         }
 
     </script>
