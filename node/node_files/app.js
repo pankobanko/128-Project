@@ -107,14 +107,15 @@ app.post('/add-recipe', upload.single('recipe-image'), (req, res) => {
     var name = req.body['recipe-title'];
     var description = req.body['recipe-description'];
     var category = req.body['recipe-category'];
+    var duration = req.body['recipe-details'];
     var ing = req.body['ing'];
     var inst = req.body['inst'];
     var image = req.file ? req.file.filename : null;
 
     const insertRecipe = `
-    INSERT INTO recipes (name, description, category, ing, inst, image) 
-    VALUES (?, ?, ?, ?, ?, ?)`;
-    con.query(insertRecipe, [name, description, category, ing, inst, image], (err, result) => {
+    INSERT INTO recipes (name, description, category, duration, ing, inst, image) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    con.query(insertRecipe, [name, description, category, duration, ing, inst, image], (err, result) => {
         if (err) {
             console.error('There has been an error with uploading the recipe:', err);
             res.status(500).send(''); 

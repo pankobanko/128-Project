@@ -19,7 +19,7 @@ exports.addRecipe = function(id) {
     const selectRecipe = `SELECT * FROM recipes WHERE id = ?`;
     con.query(selectRecipe, [id], (err, result) => {
         if (result.length > 0) {
-            const { name, description, category, ing, inst, image } = result[0];
+            const { name, description, category, duration, ing, inst, image } = result[0];
             const code = `
             <!DOCTYPE html>
             <html lang="en">
@@ -47,15 +47,17 @@ exports.addRecipe = function(id) {
                         <h1 id="recipe-title">${name}</h1> <!--  food name/type -->
                         <p id="recipe-description">${description}</p> <!-- description -->
                         <br><br>
-                        <h2 id="information">Category: ${category}</h2> <!-- i.e cooking time, prep time  -->
-                        <p id="recipe-details">${ing}</p> <!-- details to be entered here -->
+                        <h2>Category:</h2> <!-- i.e cooking time, prep time  -->
+                        <p id="category">${category}</p>
+                        <h2>Duration:</h2>
+                        <p id="recipe-duration">${duration}</p> <!-- details to be entered here -->
                     </div>
                     <div class="ing">  <!-- ingredients list, i.e 200g cheese -->
-                        <h2 id="sub1">Ingredients</h2>
+                        <h2 id="sub1">Ingredients:</h2>
                         <p id="ing">${ing}</p>
                     </div>
                     <div class="instructs"> <!--  cooking instructions, i.e oven under 80c for 20 minutes / chop carrots until ... -->
-                        <h2 id="sub2">Preparations and Instructions</h2>
+                        <h2 id="sub2">Preparations and Instructions:</h2>
                         <p id="inst">${inst}</p>
                     </div>
                     <img src="../../node/node_files/uploads/${image}" id="img" alt="Recipe Image">

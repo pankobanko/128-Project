@@ -1,58 +1,46 @@
-<!DOCTYPE html>   <!-- CREATE BOILER PLATE -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Viewing</title>
+    <title>Baked Tacos</title>
     <link rel="stylesheet" href="rec.css">
 </head>
 <body>
-    <div class="navbar">
-        <nav>    
-            <ul>
-                <li><a href="../home.html">Home</a></li>
-                <li><a href="../login.html">Log In</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+    <div class="entire">    
+        <div class="navbar">
+            <nav>    
+                <ul>
+                    <li><a href="/admin_home">Admin</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <img src="../assets/logo2.png"/>
+        </div>
     </div>
     <div class="page">
         <div class="recipe-info">
-            <h1 id="title">Baked Tacos</h1> <!--  To be the title for automation-->
-            <p id="description">Crispy oven-baked Tacos — Made with crunchy hard taco shells filled with perfectly seasoned ground beef and a blend of taco seasoning.
+            <h1 id="recipe-title">Baked Tacos</h1> <!--  food name/type -->
+            <p id="recipe-description">Crispy oven-baked Tacos — Made with crunchy hard taco shells filled with perfectly seasoned ground beef and a blend of taco seasoning.
                 Topped with a generous layer of melted cheese, fresh pico de gallo, a dollop of creamy sour cream, and slices of ripe avocado. These tacos
                 offer a delightful combination of textures and flavors that will elevate your taco night to a whole new level. Enjoy a satisfying and delicious
-                meal that's easy to prepare and guaranteed to impress your family and friends.</p>
+                meal that's easy to prepare and guaranteed to impress your family and friends.</p> <!-- description -->
             <br><br>
-            <h2 id="information"></h2>
+            <h2 id="category">Category: Some category</h2> <!-- i.e cooking time, prep time  -->
+            <p id="recipe-details">${ing}</p> <!-- details to be entered here -->
         </div>
-        <div class="ing">
-            <h2 id="sub1">Ingredients You'll Need</h2>
-            <p id="ing1">1 lb ground beef</p>
-            <p id="ing2">1 packet taco seasoning</p>
-            <p id="ing3">1/2 cup water</p>
-            <p id="ing4">12 hard taco shells</p>
-            <p id="ing5">1 cup shredded cheddar cheese</p>
-            <p id="ing6">Toppings: lettuce, tomato, sour cream, salsa, etc.</p>
-            <p id="ing7"></p>
-            <p id="ing8"></p>
-            <p id="ing9"></p>
-            <p id="ing10"></p>
+        <div class="ing">  <!-- ingredients list, i.e 200g cheese -->
+            <h2 id="sub1">Ingredients</h2>
+            <p id="ing">${ing}</p>
         </div>
-        <div class="instructs">
+        <div class="instructs"> <!--  cooking instructions, i.e oven under 80c for 20 minutes / chop carrots until ... -->
             <h2 id="sub2">Preparations and Instructions</h2>
-            <p id="inst1">Preheat your oven to 375°F (190°C).</p>
-            <p id="inst2">Brown the ground beef in a pan over medium heat. Drain any excess fat.</p>
-            <p id="inst3">Stir in taco seasoning and water. Simmer for 5 minutes until thickened.</p>
-            <p id="inst4">Arrange taco shells in a baking dish. Spoon the beef mixture into each shell.</p>
-            <p id="inst5">Sprinkle cheese over the beef-filled shells.</p>
-            <p id="inst6">Bake for 10-12 minutes until cheese is melted and shells are crispy.</p>
-            <p id="inst7">Add your favorite toppings and serve hot.</p>
-            <p id="inst8"></p>
-            <p id="inst9"></p>
-            <p id="inst10"></p>
+            <p id="inst">${inst}</p>
         </div>
+        <img src="../../node/node_files/uploads/${image}" id="img" alt="Recipe Image">
     </div>
+
 </body>
 </html>
+`;

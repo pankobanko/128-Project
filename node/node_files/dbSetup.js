@@ -38,6 +38,7 @@ con.connect(function (err) {
                     name VARCHAR(255),
                     description VARCHAR(5000),
                     category VARCHAR(255),
+                    duration VARCHAR(255),
                     ing VARCHAR(5000),
                     inst VARCHAR(5000),
                     image VARCHAR(255)
