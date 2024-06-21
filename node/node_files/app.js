@@ -159,17 +159,20 @@ app.get('/get-recipe', (req, res) => {
     const getRecipe = 'SELECT * FROM recipes WHERE id = ?';
     con.query(getRecipe, [recipeId], (err, result) => {
         if (err) {
-            console.error('Error fetching recipe:', err);
-            res.status(500).send('Error fetching recipe');
+            console.error('Error in attempt of fetching the recipe:', err);
+            res.status(500).send('');
         } else {
             if (result.length > 0) {
-                res.json(result[0]); // Assuming only one recipe will be returned with the given ID
+                res.json(result[0]);
             } else {
-                res.status(404).send('Recipe not found');
+                res.status(404).send('Recipe does not exist.');
             }
         }
     });
 });
+
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
