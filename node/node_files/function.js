@@ -66,7 +66,7 @@ exports.addRecipe = function(id) {
             </body>
             </html>
             `;
-            const pathing = path.join(__dirname, '../../public/recipes', filename + (++counter) + '.html');
+            const pathing = path.join(__dirname, '../../public/recipes', filename + id + '.html');
             fs.appendFile(pathing, code, function (err) {
                 if (err) throw err;
                 console.log("new file successfully created with boilerplate attached.");

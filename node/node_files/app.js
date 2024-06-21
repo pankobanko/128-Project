@@ -6,6 +6,7 @@ const path = require('path');
 const multer = require('multer');
 const app = express();
 var fm = require("./function");
+const fs = require('fs');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -179,6 +180,21 @@ app.post('/edit-recipe', upload.single('recipe-image'), (req, res) => {
     const duration = req.body['recipe-details'];
     const ing = req.body['ing'];
     const inst = req.body['inst'];
+
+    const deleteRecipeHTML = (recipeId) => {
+        const filename = `rec${String(parseInt(recipeId))}.html`; 
+        const filePath = path.join(__dirname, '../../public/recipes', filename);
+
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                console.error('Error in attempt to delete:', err);
+            } else {
+                console.log('Recipe deleted!');
+
+                fm.addRecipe(id);
+            }
+        });
+    };
     
     const updateRecipeQuery = `
         UPDATE recipes
@@ -191,6 +207,7 @@ app.post('/edit-recipe', upload.single('recipe-image'), (req, res) => {
             res.status(500).send('Error updating recipe.');
         } else {
             console.log('Recipe updated successfully.');
+            deleteRecipeHTML(id);
             res.redirect('/admin_home');
         }
     });
