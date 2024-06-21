@@ -47,7 +47,22 @@ con.connect(function (err) {
                 con.query(createTableRecipes, function (err, result) {
                     if (err) throw err;
                     console.log("Recipes table created.");
-                    con.end();
+
+                    const insertRecipe = `
+                    INSERT INTO recipes (name, description, category, duration, ing, inst, image)
+                    VALUES ('Baked Tacos',
+                            'Crispy oven-baked Tacos — Made with crunchy hard taco shells filled with perfectly seasoned ground beef and a blend of taco seasoning. Topped with a generous layer of melted cheese, fresh pico de gallo, a dollop of creamy sour cream, and slices of ripe avocado. These tacos offer a delightful combination of textures and flavors that will elevate your taco night to a whole new level. Enjoy a satisfying and delicious meal that''s easy to prepare and guaranteed to impress your family and friends.',
+                            'Pasta',
+                            '10 Minutes',
+                            '1 lb ground beef\\n1 packet taco seasoning\\n1/2 cup water\\n12 hard taco shells\\n1 cup shredded cheddar cheese\\nToppings: lettuce, tomato, sour cream, salsa, etc.',
+                            'Preheat your oven to 375°F (190°C).\\nBrown the ground beef in a pan over medium heat. Drain any excess fat.\\nStir in taco seasoning and water. Simmer for 5 minutes until thickened.\\nArrange taco shells in a baking dish. Spoon the beef mixture into each shell.\\nSprinkle cheese over the beef-filled shells.\\nBake for 10-12 minutes until cheese is melted and shells are crispy.\\nAdd your favorite toppings and serve hot.',
+                            'image for later')`;
+
+                    con.query(insertRecipe, function (err, result) {
+                        if (err) throw err;
+                        console.log("Recipe inserted.");
+                        con.end();
+                    });
                 });
             });
         });
