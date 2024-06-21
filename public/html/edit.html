@@ -3,9 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/edit.css">
+    <title>Editing Recipes</title>
 </head>
 <body>
-    
+    <div class="entire">    
+        <div class="navbar">
+            <nav>    
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="logout"><a href="#">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <form>
+            <div class="label">
+                <label for="dropdown">Choose a recipe: </label><br>
+            </div>
+            <select id="dropdown" name="dropdown">
+                <option value="">Select a recipe!</option>
+            </select>
+        </form>
+    </div>
+
+    <div class = 'recipe-form-box'>
+        <!-- Recipe Form (Initially Hidden) -->
+        <form id="recipe-form" method="POST" enctype="multipart/form-data">
+            <div id="recipe-details-section">
+                <h2 class="recipe-title">Edit the Existing Recipe!</h2>
+                <div class="input">
+                    <label for="recipe-title">Recipe Title:</label><br>
+                    <input type="text" id="recipe-title" name="recipe-title" required><br>
+                    <label for="recipe-description">Recipe Description:</label><br>
+                    <textarea id="recipe-description" name="recipe-description" rows="3" cols="80" required></textarea><br>
+                    <label for="recipe-category">Recipe Category/Cuisine Type:</label><br>
+                    <input type="text" id="recipe-category" name="recipe-category" required><br>
+                    <label for="recipe-details">Preparation and Cooking Duration:</label><br>
+                    <input type="text" id="recipe-details" name="recipe-details" required><br>
+                    <label for="recipe-image">Recipe Image:</label><br>
+                    <input type="file" id="recipe-image" name="recipe-image" accept="image/*" required><br>
+                    <div class="button-container">
+                        <button type="button" class="next-button">Next</button>
+                    </div>
+                </div>
+            </div>
+            <div id="recipe-next-section" class="hidden">
+                <h2 class="recipe-title-2">Add Ingredients and Instructions</h2>
+                <div class="input">
+                    <label for="ing">Ingredients:</label><br>
+                    <textarea id="ing" name="ing" rows="6" cols="80" required></textarea><br>
+                    <label for="inst">Instructions:</label><br>
+                    <textarea id="inst" name="inst" rows="6" cols="80" required></textarea><br>
+                </div>
+                <div class="button-container">
+                    <button type="button" class="back-button">Back</button>
+                    <div class="space"></div>
+                    <button type="submit" class="submit-button">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Automatically adding recipes into dropdown list from the MySQL table to edit
+        document.addEventListener('DOMContentLoaded', () => {
+            // For your understanding...
+            fetch('/get-recipes') // Fetches the MySQL recipe table via route /get-recipes
+                .then(response => response.json()) // Handles the response (we want to convert the result into a JSON object for the dropdown)
+                .then(data => { // Data parameter represents the JSON data
+                    const dropdown = document.getElementById('dropdown');
+                    data.forEach(recipe => { // Iterates through every recipe in the array
+                        const option = document.createElement('option'); // With each recipe, an option will be created in the dropdown for it
+                        option.value = recipe.id; // We set the value of the option object with  the auto-incremented ID of the recipe in the MySQL recipe table
+                        option.textContent = recipe.name; // We change the name of the recipe (what is being shown on the dropdown) to the recipe name
+                        dropdown.appendChild(option); // We append the newly created option; the recipe is being added to the dropdown
+                    });
+                })
+                .catch(error => console.error('There has been an error: ', error)); // If error caught, returns error to console
+        });
+
+        document.addEventListener('change', (event) => { // Wants to check if there is an event target and if there is a dropdown
+            if (event.target && event.target.id === 'dropdown') { // Selects the form inside the dropdown
+                const form = document.querySelector('.dropdown form'); // Selects the recipe form
+                const recipeFormBox = document.querySelector('.recipe-form-box');
+                if (event.target.value) {
+                    form.style.display = 'none'; // If a value is selected (any of the recipes), it hides the dropdown
+                    recipeFormBox.style.display = 'block'; // As the dropdown disappears, the recipe form appears
+                    fetch(`/get-recipe?id=${event.target.value}`)
+                        .then(response => response.json())
+                        .then(recipeData => { // recipeData PARSED JSON
+                            populateRecipeForm(recipeData); // Used for the function to gather the pre-existing recipe values to placed in the form
+                        })
+                        .catch(error => console.error('There has been an error: ', error)); // If error caught, returns error to console
+                } else {
+                    form.style.display = 'block'; // If no value is selected (the select a recipe! option), nothing will happen
+                    recipeFormBox.style.display = 'none';
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const recipeFormBox = document.querySelector('.recipe-form-box');
+            recipeFormBox.style.display = 'none';
+
+            const nextButton = document.querySelector('.next-button');
+            const backButton = document.querySelector('.back-button');
+            const recipeForm = document.getElementById('recipe-form');
+            const recipeDetailsSection = document.getElementById('recipe-details-section');
+            const recipeNextSection = document.getElementById('recipe-next-section');
+
+            function checkFormFields(section) {
+                const formFields = section.querySelectorAll('[required]');
+                let fieldsFilled = true;
+                formFields.forEach(function (field) {
+                    if (!field.value.trim()) {
+                        fieldsFilled = false;
+                        field.classList.add('error');
+                    } else {
+                        field.classList.remove('error');
+                    }
+                });
+                return fieldsFilled;
+            }
+
+            nextButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                if (checkFormFields(recipeDetailsSection)) {
+                    recipeDetailsSection.style.display = 'none';
+                    recipeNextSection.style.display = 'block';
+                } else {
+                    alert('Fill out all the required fields for adding the new recipe before clicking next.');
+                }
+            });
+
+            backButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                recipeNextSection.style.display = 'none';
+                recipeDetailsSection.style.display = 'block';
+            });
+
+            recipeForm.addEventListener('submit', function (event) {
+                if (!checkFormFields(recipeNextSection)) {
+                    event.preventDefault();
+                    alert('Fill out all the required fields for ingredients and instructions before submitting.');
+                }
+            });
+        });
+
+        function populateRecipeForm(recipeData) {
+            const recipeTitleInput = document.getElementById('recipe-title');
+            const recipeDescriptionTextarea = document.getElementById('recipe-description');
+            const recipeCategoryInput = document.getElementById('recipe-category');
+            const recipeDetailsInput = document.getElementById('recipe-details');
+            const ingredientsTextarea = document.getElementById('ing');
+            const instructionsTextarea = document.getElementById('inst');
+
+            recipeTitleInput.value = recipeData.name;
+            recipeDescriptionTextarea.value = recipeData.description;
+            recipeCategoryInput.value = recipeData.category;
+            recipeDetailsInput.value = recipeData.duration;
+            ingredientsTextarea.value = recipeData.ing;
+            instructionsTextarea.value = recipeData.inst;
+        }
+
+    </script>
 </body>
 </html>

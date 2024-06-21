@@ -66,6 +66,10 @@ app.get('/add-recipe', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/add.html'));
 });
 
+app.get('/edit-recipe', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/edit.html'));
+});
+
 app.post("/login", function(req, res){
     var username = req.body.username;
     var password = req.body.password;
@@ -127,7 +131,13 @@ app.post('/add-recipe', upload.single('recipe-image'), (req, res) => {
     });
 });
 
-
+app.get('/get-recipes', (req, res) => {
+    const getRecipes = 'SELECT id, name FROM recipes';
+    con.query(getRecipes, (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
 
 
 
@@ -143,6 +153,23 @@ app.get('/logout', (req, res) => {
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.get('/get-recipe', (req, res) => {
+    const recipeId = req.query.id;
+    const getRecipe = 'SELECT * FROM recipes WHERE id = ?';
+    con.query(getRecipe, [recipeId], (err, result) => {
+        if (err) {
+            console.error('Error fetching recipe:', err);
+            res.status(500).send('Error fetching recipe');
+        } else {
+            if (result.length > 0) {
+                res.json(result[0]); // Assuming only one recipe will be returned with the given ID
+            } else {
+                res.status(404).send('Recipe not found');
+            }
+        }
+    });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
