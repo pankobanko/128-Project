@@ -1,14 +1,12 @@
 const fs = require("fs");
 const filename = "rec";
 const path = require("path");
-const mysql = require("mysql");
-
 var counter = 3;
-
+const mysql = require("mysql");
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password", // CHANGE PASSWORD
+    password: "passwordfor128", // CHANGE PASSWORD
     database: "loginDB"
 });
 
@@ -16,11 +14,8 @@ con.connect((err) => {
     if (err) throw err;
 });
 
-exports.addRecipe = function(id) {
-    recipeappend(id);
-}
 
-function recipeappend(id) {
+exports.addRecipe = function(id) { 
     const selectRecipe = `SELECT * FROM recipes WHERE id = ?`;
     con.query(selectRecipe, [id], (err, result) => {
         if (result.length > 0) {

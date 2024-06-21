@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const path = require('path');
 const multer = require('multer');
 const app = express();
-var fm = require("../../public/recipes/function");
+var fm = require("./function");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +20,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password", // Change password
+    password: "passwordfor128", // Change password
     database: "loginDB"
 });
 
