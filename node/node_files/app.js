@@ -153,6 +153,19 @@ app.get('/api/recipes', (req, res) => { //To display recipes to home page
 });
 
 
+app.get('/api/searchresults', (req, res) => {
+    const keyword = `%${req.query.q}%`
+    const fetchResults = `SELECT * FROM recipes WHERE name LIKE ?`;
+    con.query(fetchResults, [keyword], (err, results) => {
+        if (err) {
+            console.error('Error fetching results: ', err);
+        } else {
+            res.json(results)
+        }
+    })
+});
+
+
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
