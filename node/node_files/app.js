@@ -21,7 +21,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128", // Change password
+    password: "password", // Change password
     database: "loginDB"
 });
 
@@ -69,6 +69,14 @@ app.get('/add-recipe', (req, res) => {
 
 app.get('/edit-recipe', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/edit.html'));
+});
+
+app.get('/del-recipe', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/delete.html'));
+});
+
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/Contact.html'));
 });
 
 app.post("/login", function(req, res){
@@ -237,6 +245,26 @@ app.post('/edit-recipe', upload.single('recipe-image'), (req, res) => {
     });
 });
 
+app.delete('/delete-recipe', (req, res) => {
+    const recipeId = req.query.id;
+    const deleteRecipe = 'DELETE FROM recipes WHERE id = ?';
+    con.query(deleteRecipe, [recipeId], (err, result) => {
+        if (err) {
+            console.error('Error in attempt of deleting the recipe:', err);
+            res.status(500).send('Failed to delete the recipe.');
+        } else {
+            const filePath = path.join(__dirname, '../../public/recipes', `rec${recipeId}.html`);
+            fs.unlink(filePath, (err) => {
+                if (err) {
+                    console.error('Error, cannot delete recipe HTML:', err);
+                    res.status(500).send('');
+                } else {
+                    res.status(200).send('Recipe deleted.');
+                }
+            });
+        }
+    });
+});
 
 
 

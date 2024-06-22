@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const con = require('./dbSetup'); // Import your MySQL connection
+const con = require('./dbSetup');
 
 router.post('/update-recipe', (req, res) => {
     const { id, name, description, category, duration, ing, inst, image } = req.body;

@@ -3,9 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/delete.css">
+    <title>Deleting Recipes</title>
 </head>
 <body>
-    
+    <div class="entire">    
+        <div class="navbar">
+            <nav>    
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="logout"><a href="/logout">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <form>
+            <div class="label">
+                <label for="dropdown">Delete a recipe: </label><br>
+            </div>
+            <select id="dropdown" name="dropdown">
+                <option value="">Select a recipe!</option>
+            </select>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/get-recipes')
+                .then(response => response.json())
+                .then(data => {
+                    const dropdown = document.getElementById('dropdown');
+                    data.forEach(recipe => {
+                        const option = document.createElement('option');
+                        option.value = recipe.id;
+                        option.textContent = recipe.name;
+                        dropdown.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('There has been an error: ', error));
+        });
+
+        document.addEventListener('change', (event) => {
+            if (event.target && event.target.id === 'dropdown') {
+                const recipeId = event.target.value;
+                if (recipeId) {
+                    if (confirm('Are you sure you want to delete this recipe?')) {
+                        fetch(`/delete-recipe?id=${recipeId}`, {
+                            method: 'DELETE'
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Recipe deleted!');
+                                location.reload();
+                            } else {
+                                alert('Recipe not deleted.');
+                            }
+                        })
+                        .catch(error => console.error('There has been an error: ', error));
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

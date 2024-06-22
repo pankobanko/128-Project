@@ -1,97 +1,166 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Raleway, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #1a1a1a;
-    color: #fff;
+    overflow-x: hidden;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+::-webkit-scrollbar {
+    width: 1em;
+    height: 0;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    margin: 0;
+::-webkit-scrollbar-track {
+    background: #1a1616;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+::-webkit-scrollbar-thumb {
+    background: #19503d;
+    border: 0.3em solid #1a1616;
+    border-radius: 100vw;
 }
 
-nav ul li a {
-    color: #fff;
+::-webkit-scrollbar-thumb:hover {
+    background: #278161;
+}
+
+
+a {
     text-decoration: none;
-    font-size: 1.2rem;
+    color: white;    
+}
+a:hover{
+    text-decoration: underline;
 }
 
-main {
-    padding: 100px 2rem 2rem 2rem;
-    background: url('../assets/contact.png') no-repeat center center fixed;
+.raleway-m {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.entire {
+    height: 100vh;
+    display: flex;
+    background: url(../assets/new_bg.jpg);
+    background-position: center;
     background-size: cover;
-    min-height: 100vh;
+    background-attachment: fixed;
+    flex-direction: column;
+
+}
+
+.navbar {
+    background: #241a08;
+    display: flex;
+    height: 7.5vh;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0 0 3vh rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: fixed;
+    padding: 0 2vh;
+}
+
+.navbar > img {
+    width: auto;
+    height: 50%;
+    margin: 0 auto;
+    padding-right: 20vh;
+    position: relative;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin-left: 3vh; 
+}
+
+.navbar ul li {
+    padding-right: 2vh;
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+    justify-content: center;
+    font-size: 2vh;
+    align-items: center;
 }
 
 .contact-section {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 2rem;
-    margin: 2rem auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2vh;
+    color: white;
+    text-align: center;
+    background-color: rgba(29, 29, 29, 0.8);
+    max-width: 80%;
+    width: 700px;
     border-radius: 10px;
-    max-width: 800px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 60px;
 }
 
 .contact-section h1 {
-    color: rgba(255, 254, 254, 0.8);
+    font-size: 4vh;
+    margin-bottom: 2vh;
 }
 
 .contact-section p {
-    color: #ddd;
+    font-size: 2vh;
+    margin-bottom: 3vh;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 2vh;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    font-size: 2vh;
+    margin-bottom: 1vh;
 }
 
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 0.5rem;
+.form-group input,
+.form-group textarea {
+    width: 50%;
+    padding: 1vh;
+    border-radius: 1vh;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
+    background-color: #f8f8f8;
+    font-size: 2vh;
 }
 
-button {
-    background-color: #f39c12;
-    color: #fff;
+.form-group textarea {
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #68420e;
+    color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
+    padding: 1vh 2vh;
+    font-size: 2vh;
+    border-radius: 1vh;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #e08e0b;
+button[type="submit"]:hover {
+    background-color: #278161;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-}
