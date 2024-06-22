@@ -21,7 +21,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128", // Change password
+    password: "password", // Change password
     database: "loginDB"
 });
 
@@ -73,6 +73,10 @@ app.get('/edit-recipe', (req, res) => {
 
 app.get('/del-recipe', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/html/delete.html'));
+});
+
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/html/Contact.html'));
 });
 
 app.post("/login", function(req, res){
