@@ -21,7 +21,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "passwordfor128", // Change password
+    password: "password", // Change password
     database: "loginDB"
 });
 
