@@ -21,7 +21,7 @@ app.use(session({
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password", // Change password
+    password: "passwordfor128", // Change password
     database: "loginDB"
 });
 
@@ -148,7 +148,7 @@ app.get('/get-recipes', (req, res) => {
     });
 });
 
-app.get('/api/recipes', (req, res) => { //To display recipes to home page
+app.get('/api/recipes', (req, res) => {                             //To display recipes to home page
     const fetchRecipes = `SELECT * FROM recipes`;
     con.query(fetchRecipes, (err, results) => {
         if (err) {
@@ -162,15 +162,16 @@ app.get('/api/recipes', (req, res) => { //To display recipes to home page
 
 
 app.get('/api/searchresults', (req, res) => {
-    const keyword = `%${req.query.q}%`
-    const fetchResults = `SELECT * FROM recipes WHERE name LIKE ?`;
-    con.query(fetchResults, [keyword], (err, results) => {
+    const fetchResults = `SELECT * FROM recipes WHERE name LIKE ? OR category LIKE ?`;
+    const keyword = `%${req.query.q}%`;
+    con.query(fetchResults, [keyword, keyword], (err, results) => {
         if (err) {
             console.error('Error fetching results: ', err);
+            res.status(500).json({ error: 'Error fetching results' });
         } else {
-            res.json(results)
+            res.json(results);
         }
-    })
+    });
 });
 
 
