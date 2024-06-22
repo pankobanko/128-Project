@@ -226,19 +226,17 @@ a:hover{
 }
 
 .search-bar {
-    flex: 0 1 auto;
-    padding-top: 100px;
+    flex: 1;
     display: flex;
-    justify-content: center;
-    position: relative;
-    
+    align-items: center;
+    padding-top: 5vh;
 }
 
 input {
     position: absolute;
     border: none;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     border-radius: 5px;
     height: 50px;
     color: white;
