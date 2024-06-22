@@ -32,17 +32,17 @@ con.connect(function (err) {
                 if (err) throw err;
                 console.log("Users table created.");
 
-                const createTableRecipes = `
-                    CREATE TABLE IF NOT EXISTS recipes (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-                        name VARCHAR(255),
-                        description VARCHAR(5000),
-                        category VARCHAR(255),
-                        duration VARCHAR(255),
-                        ing VARCHAR(5000),
-                        inst VARCHAR(5000),
-                        image VARCHAR(255)
-                    )`;
+                // const createTableRecipes = `
+                //     CREATE TABLE IF NOT EXISTS recipes (
+                //         id INT AUTO_INCREMENT PRIMARY KEY,
+                //         name VARCHAR(255),
+                //         description VARCHAR(5000),
+                //         category VARCHAR(255),
+                //         duration VARCHAR(255),
+                //         ing VARCHAR(5000),
+                //         inst VARCHAR(5000),
+                //         image VARCHAR(255)
+                //     )`;
 
                 con.query(createTableRecipes, function (err, result) {
                     if (err) throw err;

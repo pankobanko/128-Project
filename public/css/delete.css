@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Raleway, sans-serif;
+    background-image: white;
+}
+
+.hidden {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+    height: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1616;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #19503d;
+    border: 0.3em solid #1a1616;
+    border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #278161;
+}
+
+.raleway-m {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+.animate-fade-up {
+    animation: fade-up 0.5s ease forwards;
+}
+
+body {
+    background-color: #fef8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: #278161;
+    display: flex;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.navbar ul li {
+    color: white;
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout {
+    position: absolute;
+    right: 0;
+    margin-right: 5vh;
+}
+
+.dropdown label {
+
+    font-size: 50px;
+    padding: 300px;
+}
+
+.dropdown select{
+
+    height: 50px;
+    width: 1000px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.label {
+    margin-bottom: 50px;
+}
