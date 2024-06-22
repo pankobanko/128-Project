@@ -140,6 +140,17 @@ app.get('/get-recipes', (req, res) => {
     });
 });
 
+app.get('/api/recipes', (req, res) => { //To display recipes to home page
+    const fetchRecipes = `SELECT * FROM recipes`;
+    con.query(fetchRecipes, (err, results) => {
+        if (err) {
+            console.error('Error fetching recipes:', err);
+            res.status(500).send('Server error');
+        } else {
+            res.json(results);
+        }
+    });
+});
 
 
 app.get('/logout', (req, res) => {

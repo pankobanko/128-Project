@@ -132,6 +132,43 @@
     window.ontouchend = e => handleOnUp(e.touches[0]);
     window.onmousemove = e => handleOnMove(e);
     window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/api/recipes')
+            .then(response => response.json())
+            .then(recipes => {
+                const recipeList = document.querySelector('.recipe-list');
+                recipes.forEach((recipe, index) => {
+                    const recipeDiv = document.createElement('div');
+                    recipeDiv.id = `rec${index + 1}`;
+                    recipeDiv.classList.add('recipes');
+                    recipeDiv.onclick = () => window.location.href = `../recipes/rec${index + 1}.html`;
+
+                    const img = document.createElement('img');
+                    img.src = `../uploads/${recipe.image}`;
+                    img.id = 'img';
+
+                    const div = document.createElement('div');
+
+                    const h2 = document.createElement('h2');
+                    h2.id = 'title2';
+                    h2.innerHTML = `<a href="#">${recipe.name}</a><br/>`;
+
+                    const p = document.createElement('p');
+                    p.id = 'desc2';
+                    p.innerHTML = recipe.description;
+
+                    div.appendChild(h2);
+                    div.appendChild(p);
+
+                    recipeDiv.appendChild(img);
+                    recipeDiv.appendChild(div);
+
+                    recipeList.appendChild(recipeDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching recipes:', error));
+    });
   </script>
 
 </body>
