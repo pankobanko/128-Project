@@ -51,45 +51,10 @@
                 </div>
                 
                 <div class="recipe-list"> <!-- Within this div is where recipes are listed; the ids within the elements will be used for JS, for editing or removing.-->
-                    <div id="rec1" class="recipes" onclick="window.location.href='../recipes/rec1.html'">
-                        <img src="../assets/baked_tacos.jpg" >
-                        <div>
-                            <h2 id="title1"><a href="#"> Baked Tacos</a><br/></h2><br/>
-                            <p id="desc1">
-                                Crispy oven-baked Tacos — Made with crunchy hard taco shells filled with perfectly seasoned ground beef and a blend of taco seasoning. <br>
-                                Topped with a generous layer of melted cheese, fresh pico de gallo, a dollop of creamy sour cream, and slices of ripe avocado. These tacos <br>
-                                offer a delightful combination of textures and flavors that will elevate your taco night to a whole new level. Enjoy a satisfying and delicious <br> 
-                                meal that's easy to prepare and guaranteed to impress your family and friends.
-                            </p>
-                        </div>
-                    </div>
-                    <div id="rec2" class="recipes" onclick="window.location.href='../recipes/rec2.html'">
-                        <img src="../assets/spaghetti.jpeg" >
-                        <div>
-                            <h2 id="title2"><a href="#"> Spaghetti Carbonara</a><br/></h2><br/>
-                            <p id="desc2">
-                                A traditional Italian dish featuring al dente spaghetti tossed in a rich and creamy sauce made from eggs and Parmesan cheese. <br>
-                                Infused with the smoky flavor of crispy pancetta, and seasoned with freshly ground black pepper, this pasta dish is both simple and indulgent. <br>
-                                Finished with a sprinkling of extra cheese and a touch of parsley, our Spaghetti Carbonara offers a perfect blend of savory and creamy notes that <br>
-                                will delight your taste buds and leave you craving more.
-                            </p>
-                        </div>
-                    </div>
-                    <div id="rec3" class="recipes" onclick="window.location.href='../recipes/rec3.html'">
-                        <img src="../assets/nasi.jpg" >
-                        <div>
-                            <h2 id="title2"><a href="#"> Nasi Goreng</a><br/></h2><br/>
-                            <p id="desc2">
-                                Savory Nasi Goreng — This Indonesian fried rice features fragrant jasmine rice stir-fried with garlic, shallots, and soy sauce. Mixed with tender <br>
-                                chicken, succulent shrimp, and fresh vegetables, it's topped with a fried egg, crispy shallots, and tangy pickles. A burst of authentic flavors, <br>
-                                perfect for a quick dinner or a special treat.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <h1 style="text-align: center;">View More</h1>
-                    </div>
+                    
+                </div>
+                <div class="footer" style="height: 20vh;">
+                    
                 </div>
             </div>
     </div>
@@ -133,16 +98,18 @@
     window.onmousemove = e => handleOnMove(e);
     window.ontouchmove = e => handleOnMove(e.touches[0]);
 
+    
+
     document.addEventListener('DOMContentLoaded', function () {
         fetch('/api/recipes')
             .then(response => response.json())
             .then(recipes => {
                 const recipeList = document.querySelector('.recipe-list');
-                recipes.forEach((recipe, index) => {
+                recipes.forEach(recipe => {
                     const recipeDiv = document.createElement('div');
-                    recipeDiv.id = `rec${index + 1}`;
+                    recipeDiv.id = `rec${recipe.id}`;
                     recipeDiv.classList.add('recipes');
-                    recipeDiv.onclick = () => window.location.href = `../recipes/rec${index + 1}.html`;
+                    recipeDiv.onclick = () => window.location.href = `../recipes/rec${recipe.id}.html`;
 
                     const img = document.createElement('img');
                     img.src = `../uploads/${recipe.image}`;
