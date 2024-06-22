@@ -60,7 +60,7 @@ exports.addRecipe = function(id) {
                         <h2 id="sub2">Preparations and Instructions:</h2>
                         <p id="inst">${inst}</p>
                     </div>
-                    <img src="../../node/node_files/uploads/${image}" id="img" alt="Recipe Image">
+                    
                 </div>
 
             </body>
